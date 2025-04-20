@@ -38,5 +38,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Lawrence Kabirat",
+    "email": "lawrencekabirat@gmail.com",
+    "phoneNumber": "09054326352",
+    "pin": "123456",
+    "balance": 150,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 150,
+        "date": "4/20/2025, 4:42:48 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
