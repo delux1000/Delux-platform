@@ -86,8 +86,37 @@ app.post('/register', (req, res) => {
 
   }
 
-  const newUser = { fullName, email, phoneNumber, pin, balance: 80, transactions: [] };
+  const newUser = { 
 
+  fullName, 
+
+  email, 
+
+  phoneNumber, 
+
+  pin, 
+
+  balance: 150, 
+
+  transactions: [
+
+    {
+
+      type: 'Credit',
+
+      description: 'Delux Welcome Bonus',
+
+      amount: 150,
+
+      date: new Date().toLocaleString(),
+
+      balanceAfterTransaction: 150,
+
+    }
+
+  ] 
+
+};
   users.push(newUser);
 
   saveUsers(users);
@@ -146,7 +175,7 @@ app.post('/withdraw', (req, res) => {
 
   if (user.balance < withdrawalAmount || withdrawalAmount < 100) {
 
-    return res.send("Insufficient funds or amount below the minimum withdrawal limit of 100€.");
+    return res.send("Insufficient funds or amount below the minimum withdrawal limit of 200€.");
 
   }
 
