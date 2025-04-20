@@ -22,6 +22,27 @@
       color: #ffcc00;
       box-shadow: 0px 4px 10px rgba(0,0,0,0.6);
       letter-spacing: 1px;
+      position: relative;
+    }
+
+    .download-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-image: linear-gradient(to right, #007BFF, #0056b3);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.4);
+      text-decoration: none;
+    }
+
+    .download-btn:hover {
+      background-image: linear-gradient(to right, #0056b3, #003d80);
     }
 
     .highlight {
@@ -141,7 +162,6 @@
       flex-wrap: wrap;
     }
 
-    /* Media Queries for responsiveness */
     @media (max-width: 768px) {
       header {
         font-size: 2em;
@@ -205,7 +225,10 @@
 </head>
 <body>
 
-  <header>Delux Euro Wallet</header>
+  <header>
+    Delux Euro Wallet
+    <a href="https://www.appcreator24.com/app3560484-0pbdas" target="_blank" class="download-btn">Download</a>
+  </header>
 
   <div class="highlight">
     <p><strong>Claim Your €150 Welcome Bonus Instantly!</strong></p>
