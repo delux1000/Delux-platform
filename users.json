@@ -54,5 +54,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "David",
+    "email": "david@gma.com",
+    "phoneNumber": "12345767890",
+    "pin": "666666",
+    "balance": 150,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 150,
+        "date": "4/20/2025, 9:20:36 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
