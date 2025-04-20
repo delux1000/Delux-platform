@@ -1,119 +1,307 @@
-/**
- * This is the main Node.js server script for your project
- * Check out the two endpoints this back-end API provides in fastify.get and fastify.post below
- */
+const express = require('express');
 
-const path = require("path");
+const bodyParser = require('body-parser');
 
-// Require the fastify framework and instantiate it
-const fastify = require("fastify")({
-  // Set this to true for detailed logging:
-  logger: false,
-});
+const fs = require('fs');
 
-// ADD FAVORITES ARRAY VARIABLE FROM TODO HERE
+const session = require('express-session');
 
-// Setup our static files
-fastify.register(require("@fastify/static"), {
-  root: path.join(__dirname, "public"),
-  prefix: "/", // optional: default '/'
-});
+const path = require('path');
 
-// Formbody lets us parse incoming forms
-fastify.register(require("@fastify/formbody"));
+const app = express();
 
-// View is a templating manager for fastify
-fastify.register(require("@fastify/view"), {
-  engine: {
-    handlebars: require("handlebars"),
-  },
-});
+const PORT = 3000;
 
-// Load and parse SEO data
-const seo = require("./src/seo.json");
-if (seo.url === "glitch-default") {
-  seo.url = `https://${process.env.PROJECT_DOMAIN}.glitch.me`;
+const USERS_FILE = 'users.json';
+
+const TRANSACTIONS_FILE = 'transactions.json';
+
+const INVESTMENTS_FILE = 'investments.json';
+
+if (!fs.existsSync(USERS_FILE)) fs.writeFileSync(USERS_FILE, '[]');
+
+if (!fs.existsSync(TRANSACTIONS_FILE)) fs.writeFileSync(TRANSACTIONS_FILE, '[]');
+
+if (!fs.existsSync(INVESTMENTS_FILE)) fs.writeFileSync(INVESTMENTS_FILE, '[]');
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({ secret: 'delux-secret', resave: false, saveUninitialized: true }));
+
+function readUsers() {
+
+  return JSON.parse(fs.readFileSync(USERS_FILE));
+
 }
 
-/**
- * Our home page route
- *
- * Returns src/pages/index.hbs with data built into it
- */
-fastify.get("/", function (request, reply) {
-  // params is an object we'll pass to our handlebars template
-  let params = { seo: seo };
+function saveUsers(users) {
 
-  // If someone clicked the option for a random color it'll be passed in the querystring
-  if (request.query.randomize) {
-    // We need to load our color data file, pick one at random, and add it to the params
-    const colors = require("./src/colors.json");
-    const allColors = Object.keys(colors);
-    let currentColor = allColors[(allColors.length * Math.random()) << 0];
+  fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
 
-    // Add the color properties to the params object
-    params = {
-      color: colors[currentColor],
-      colorError: null,
-      seo: seo,
-    };
+}
+
+function logTransaction(email, type, amount) {
+
+  const transaction = { email, type, amount, date: new Date().toISOString() };
+
+  let transactions = [];
+
+  if (fs.existsSync(TRANSACTIONS_FILE)) {
+
+    transactions = JSON.parse(fs.readFileSync(TRANSACTIONS_FILE));
+
   }
 
-  // The Handlebars code will be able to access the parameter values and build them into the page
-  return reply.view("/src/pages/index.hbs", params);
+  transactions.push(transaction);
+
+  fs.writeFileSync(TRANSACTIONS_FILE, JSON.stringify(transactions, null, 2));
+
+}
+
+function readInvestments() {
+
+  return JSON.parse(fs.readFileSync(INVESTMENTS_FILE));
+
+}
+
+function saveInvestments(investments) {
+
+  fs.writeFileSync(INVESTMENTS_FILE, JSON.stringify(investments, null, 2));
+
+}
+
+// Register
+
+app.post('/register', (req, res) => {
+
+  const { fullName, email, phoneNumber, pin } = req.body;
+
+  let users = readUsers();
+
+  if (users.find(u => u.email === email || u.phoneNumber === phoneNumber)) {
+
+    return res.send("Email or phone number already registered.");
+
+  }
+
+  const newUser = { fullName, email, phoneNumber, pin, balance: 80, transactions: [] };
+
+  users.push(newUser);
+
+  saveUsers(users);
+
+  req.session.user = email;
+
+  res.send(`<h2>Registration Successful!</h2> <p>Redirecting to dashboard...</p> <script>setTimeout(() => window.location.href = '/dashboard.html', 2000);</script>`);
+
 });
 
-/**
- * Our POST route to handle and react to form submissions
- *
- * Accepts body data indicating the user choice
- */
-fastify.post("/", function (request, reply) {
-  // Build the params object to pass to the template
-  let params = { seo: seo };
+// Login
 
-  // If the user submitted a color through the form it'll be passed here in the request body
-  let color = request.body.color;
+app.post('/login', (req, res) => {
 
-  // If it's not empty, let's try to find the color
-  if (color) {
-    // ADD CODE FROM TODO HERE TO SAVE SUBMITTED FAVORITES
+  const { email, pin } = req.body;
 
-    // Load our color data file
-    const colors = require("./src/colors.json");
+  const users = readUsers();
 
-    // Take our form submission, remove whitespace, and convert to lowercase
-    color = color.toLowerCase().replace(/\s/g, "");
+  const user = users.find(u => (u.email === email || u.phoneNumber === email) && u.pin === pin);
 
-    // Now we see if that color is a key in our colors object
-    if (colors[color]) {
-      // Found one!
-      params = {
-        color: colors[color],
-        colorError: null,
-        seo: seo,
-      };
-    } else {
-      // No luck! Return the user value as the error property
-      params = {
-        colorError: request.body.color,
-        seo: seo,
-      };
-    }
-  }
+  if (!user) return res.send("Invalid credentials.");
 
-  // The Handlebars template will use the parameter values to update the page with the chosen color
-  return reply.view("/src/pages/index.hbs", params);
+  req.session.user = user.email;
+
+  res.send(`<h2>Login Successful!</h2> <p>Redirecting to dashboard...</p> <script>setTimeout(() => window.location.href = '/dashboard.html', 2000);</script>`);
+
 });
 
-// Run the server and report out to the logs
-fastify.listen(
-  { port: process.env.PORT, host: "0.0.0.0" },
-  function (err, address) {
-    if (err) {
-      console.error(err);
-      process.exit(1);
-    }
-    console.log(`Your app is listening on ${address}`);
+// User Info
+
+app.get('/user-info', (req, res) => {
+
+  if (!req.session.user) return res.status(401).json({ error: "Not logged in" });
+
+  const users = readUsers();
+
+  const user = users.find(u => u.email === req.session.user);
+
+  res.json({ fullName: user.fullName, balance: user.balance });
+
+});
+
+// Withdraw
+
+app.post('/withdraw', (req, res) => {
+
+  if (!req.session.user) return res.status(401).json({ error: "Not logged in" });
+
+  const { amount } = req.body;
+
+  const withdrawalAmount = parseFloat(amount);
+
+  const users = readUsers();
+
+  const user = users.find(u => u.email === req.session.user);
+
+  if (user.balance < withdrawalAmount || withdrawalAmount < 100) {
+
+    return res.send("Insufficient funds or amount below the minimum withdrawal limit of 100€.");
+
   }
-);
+
+  user.balance -= withdrawalAmount;
+
+  user.transactions.push({ type: "Withdrawal", amount: withdrawalAmount, date: new Date().toISOString() });
+
+  saveUsers(users);
+
+  logTransaction(user.email, 'Withdrawal', withdrawalAmount);
+
+  res.send(`<h2>Withdrawal Successful!</h2> <p>${withdrawalAmount}€ has been debited from your account.</p> <p>Redirecting to transaction history...</p> <script>setTimeout(() => window.location.href = '/transaction-history.html', 2000);</script>`);
+
+});
+
+// Transaction History
+
+app.get('/transaction-history', (req, res) => {
+
+  if (!req.session.user) return res.status(401).json({ error: "Not logged in" });
+
+  const users = readUsers();
+
+  const user = users.find(u => u.email === req.session.user);
+
+  res.json({ transactions: user.transactions });
+
+});
+
+// Logout
+
+app.get('/logout', (req, res) => {
+
+  req.session.destroy(() => res.redirect('/login.html'));
+
+});
+
+// Invest
+
+app.post('/invest', (req, res) => {
+
+  if (!req.session.user) return res.status(401).json({ error: "Not logged in" });
+
+  const { amount, duration } = req.body;
+
+  const investAmount = parseFloat(amount);
+
+  const investDays = parseInt(duration);
+
+  if (investAmount < 100) {
+
+    return res.send("Minimum investment is 100€.");
+
+  }
+
+  const users = readUsers();
+
+  const user = users.find(u => u.email === req.session.user);
+
+  if (user.balance < investAmount) {
+
+    return res.send("Insufficient balance for investment.");
+
+  }
+
+  const investments = readInvestments();
+
+  const now = new Date();
+
+  const completeDate = new Date(now);
+
+  completeDate.setDate(completeDate.getDate() + investDays);
+
+  const returnAmount = investAmount * 3;
+
+  user.balance -= investAmount;
+
+  user.transactions.push({ type: "Investment", amount: investAmount, date: now.toISOString() });
+
+  investments.push({ email: user.email, amount: investAmount, returnAmount, duration: investDays, startDate: now.toISOString(), completeDate: completeDate.toISOString(), status: 'running' });
+
+  saveUsers(users);
+
+  saveInvestments(investments);
+
+  logTransaction(user.email, 'Investment', investAmount);
+
+  res.send(`<h2>Investment Started!</h2> <p>You have invested ${investAmount}€ for ${investDays} days.</p> <p>Total Return: ${returnAmount}€ after ${investDays} days.</p> <p>Loading...</p> <script> setTimeout(() => window.location.href = '/investments.html', 5000); </script>`);
+
+});
+
+// My Investments
+
+app.get('/my-investments', (req, res) => {
+
+  if (!req.session.user) return res.status(401).json({ error: "Not logged in" });
+
+  const investments = readInvestments();
+
+  const userInvests = investments.filter(i => i.email === req.session.user);
+
+  res.json({ investments: userInvests });
+
+});
+
+// Process Investments (Manual Trigger)
+
+app.get('/process-investments', (req, res) => {
+
+  const investments = readInvestments();
+
+  const users = readUsers();
+
+  let changesMade = false;
+
+  const now = new Date();
+
+  for (let invest of investments) {
+
+    if (invest.status === 'running' && new Date(invest.completeDate) <= now) {
+
+      invest.status = 'completed';
+
+      const user = users.find(u => u.email === invest.email);
+
+      if (user) {
+
+        user.balance += invest.returnAmount;
+
+        user.transactions.push({ type: "Investment Return", amount: invest.returnAmount, date: now.toISOString() });
+
+        logTransaction(user.email, 'Investment Return', invest.returnAmount);
+
+        changesMade = true;
+
+      }
+
+    }
+
+  }
+
+  if (changesMade) {
+
+    saveInvestments(investments);
+
+    saveUsers(users);
+
+  }
+
+  res.send("Investment processing complete.");
+
+});
+
+app.listen(PORT, () => {
+
+  console.log(`Delux Euro Wallet is running on http://localhost:${PORT}`);
+
+});
