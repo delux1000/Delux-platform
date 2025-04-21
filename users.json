@@ -86,5 +86,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Kelly don ",
+    "email": "nnaemekap89@gmail.com",
+    "phoneNumber": "08035221658",
+    "pin": "451889",
+    "balance": 150,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 150,
+        "date": "4/21/2025, 6:03:35 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
