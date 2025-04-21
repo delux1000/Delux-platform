@@ -70,5 +70,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Benjamin",
+    "email": "bigben123451771@gmail.com",
+    "phoneNumber": "0554361981",
+    "pin": "198717",
+    "balance": 150,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 150,
+        "date": "4/21/2025, 5:59:20 AM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
