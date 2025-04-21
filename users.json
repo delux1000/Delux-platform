@@ -134,5 +134,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Modou Corr ",
+    "email": "mcorr300@gmail.com",
+    "phoneNumber": "2265567",
+    "pin": "17Nove",
+    "balance": 150,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 150,
+        "date": "4/21/2025, 8:51:53 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
