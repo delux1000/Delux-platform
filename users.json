@@ -118,5 +118,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Michael Anderson",
+    "email": "mybabybubba2012@gmail.com",
+    "phoneNumber": "3348613319",
+    "pin": "Bubba2",
+    "balance": 150,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 150,
+        "date": "4/21/2025, 8:22:39 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
