@@ -102,5 +102,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Bem Bernard Aondosoo ",
+    "email": "bemb67050@gmail.com",
+    "phoneNumber": "07089047253",
+    "pin": "070888",
+    "balance": 150,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 150,
+        "date": "4/21/2025, 6:42:42 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
