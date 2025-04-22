@@ -166,5 +166,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Blessing nse",
+    "email": "blessingumorennse@gmail.com",
+    "phoneNumber": "09137207144",
+    "pin": "091372",
+    "balance": 150,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 150,
+        "date": "4/22/2025, 3:10:35 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
