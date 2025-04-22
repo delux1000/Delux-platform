@@ -150,5 +150,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Mishka Gardner",
+    "email": "mishkagardner352@gmail.com",
+    "phoneNumber": "0731750240",
+    "pin": "246852",
+    "balance": 150,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 150,
+        "date": "4/22/2025, 12:46:03 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
