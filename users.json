@@ -198,5 +198,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Munafary zubery ",
+    "email": "munafaryzubery@gmail.com",
+    "phoneNumber": "0628130937",
+    "pin": "most@2",
+    "balance": 150,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 150,
+        "date": "4/23/2025, 8:33:54 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
