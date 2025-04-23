@@ -214,5 +214,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Ikechukwu emmanuel",
+    "email": "ogrema2020@gail.com",
+    "phoneNumber": "0906337362",
+    "pin": "ogrema",
+    "balance": 150,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 150,
+        "date": "4/23/2025, 11:24:29 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
