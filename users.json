@@ -310,5 +310,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Mohammed Usman",
+    "email": "mohammed429506@gmail.com",
+    "phoneNumber": "08113960199",
+    "pin": "Gana42",
+    "balance": 150,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 150,
+        "date": "4/24/2025, 8:19:34 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
