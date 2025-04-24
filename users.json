@@ -278,5 +278,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Ajara Hussain ",
+    "email": "hajaraabdulbasit6@gmail.com",
+    "phoneNumber": "0536126365",
+    "pin": "Sulley",
+    "balance": 150,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 150,
+        "date": "4/24/2025, 6:50:05 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
