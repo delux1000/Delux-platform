@@ -246,5 +246,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Guggg",
+    "email": "akinsoyinuabiola85@gmail.com",
+    "phoneNumber": "Hvbjj",
+    "pin": "444444",
+    "balance": 150,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 150,
+        "date": "4/24/2025, 11:22:16 AM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
