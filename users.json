@@ -294,5 +294,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Donald",
+    "email": "donaldethan0033@gmail.com",
+    "phoneNumber": "0617576506",
+    "pin": "100000",
+    "balance": 150,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 150,
+        "date": "4/24/2025, 7:16:13 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
