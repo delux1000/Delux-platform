@@ -230,5 +230,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Abdul",
+    "email": "abdulsaliu84@gmail.com",
+    "phoneNumber": "07077581126",
+    "pin": "445470",
+    "balance": 150,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 150,
+        "date": "4/24/2025, 6:25:47 AM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
