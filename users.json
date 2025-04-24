@@ -262,5 +262,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Ambrocia Lebogang Moima",
+    "email": "lebogangambromoima@gmail.com",
+    "phoneNumber": "77502515",
+    "pin": "leboga",
+    "balance": 150,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 150,
+        "date": "4/24/2025, 4:38:37 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
