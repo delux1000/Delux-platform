@@ -326,5 +326,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Ketshedile kemang",
+    "email": "tshidikemang@gmail.com",
+    "phoneNumber": "770059117",
+    "pin": "Leo123",
+    "balance": 150,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 150,
+        "date": "4/25/2025, 8:24:44 AM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
