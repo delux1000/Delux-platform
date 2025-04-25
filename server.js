@@ -96,7 +96,7 @@ app.post('/register', (req, res) => {
 
   pin, 
 
-  balance: 150, 
+  balance: 350, 
 
   transactions: [
 
@@ -106,7 +106,7 @@ app.post('/register', (req, res) => {
 
       description: 'Delux Welcome Bonus',
 
-      amount: 150,
+      amount: 15,
 
       date: new Date().toLocaleString(),
 
