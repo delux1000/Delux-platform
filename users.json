@@ -358,5 +358,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Ugss",
+    "email": "b@b.b",
+    "phoneNumber": "36363",
+    "pin": "555555",
+    "balance": 350,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 350,
+        "date": "4/25/2025, 5:25:06 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
