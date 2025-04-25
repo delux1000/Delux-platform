@@ -1,229 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Deposit</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjVhXtl-fjuOAsPsptRKgc1vtZJfrfBxTFg39vHlA1suyyrwf3MNaqIj0&s=10') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvtdFyqzfN9BCsj-zmH7y_aNumJTa9uPcx4ESJJttliwsc0PCV5SQldWjA&s=10') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
 
-    h2 {
-      text-align: center;
-      font-size: 2em;
-      color: yellow;
-    }
+        h2 {
+            text-align: center;
+            color: #ffcc00;
+            font-size: 2.5em;
+            margin-top: 20px;
+            text-transform: uppercase;
+            animation: fadeIn 2s ease-in-out;
+        }
 
-    .form-container {
-      background-color: rgba(0, 0, 0, 0.75);
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 500px;
-      margin: auto;
-    }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            margin: 50px auto;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            animation: slideUp 1.5s ease-in-out;
+        }
 
-    label, select, input, button {
-      display: block;
-      width: 100%;
-      margin-bottom: 15px;
-      padding: 10px;
-      font-size: 1em;
-      border-radius: 5px;
-    }
+        .form-container input,
+        .form-container button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
 
-    button {
-      background-color: #00aaff;
-      color: #fff;
-      border: none;
-      cursor: pointer;
-    }
+        .form-container input {
+            background-color: #f9f9f9;
+            color: #333;
+        }
 
-    #loading {
-      font-weight: bold;
-      color: yellow;
-      text-align: center;
-    }
+        .form-container button {
+            background-color: #007bff;
+            color: #fff;
+            font-weight: normal;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-    .hidden {
-      display: none;
-    }
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
 
-    #conversionResult {
-      font-size: 1.1em;
-      margin-top: -10px;
-      color: lightgreen;
-    }
+        .form-container label {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
 
-    #welcomeMessage {
-      text-align: center;
-      font-size: 1.3em;
-      font-weight: bold;
-      margin-bottom: 20px;
-      color: cyan;
-    }
+        #usdAmount {
+            background-color: #f1f1f1;
+        }
 
-    @media (max-width: 600px) {
-      .form-container {
-        padding: 15px;
-      }
+        #welcomeMessage {
+            text-align: center;
+            font-size: 1.5em;
+            color: #007bff;
+            margin-bottom: 20px;
+            animation: bounceIn 1.5s ease-in-out;
+        }
 
-      h2 {
-        font-size: 1.5em;
-      }
+        p {
+            font-size: 1em;
+            text-align: center;
+            margin-top: 20px;
+            color: #555;
+        }
 
-      #welcomeMessage {
-        font-size: 1.1em;
-      }
-    }
-  </style>
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 2em;
+            }
+
+            .form-container {
+                width: 90%;
+                padding: 20px;
+            }
+
+            #welcomeMessage {
+                font-size: 1.2em;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            0% {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="form-container">
-    <h2>Deposit Funds</h2>
-    <div id="welcomeMessage">Welcome! Start your deposit below.</div>
-    <form id="depositForm">
-      <label for="amount">Amount in Euro (€):</label>
-      <input type="number" id="amount" name="amount" required step="0.01">
-      <div id="conversionResult"></div>
+    <div class="form-container">
+        <div id="welcomeMessage">Welcome! Ready to withdraw your funds.</div>
 
-      <label for="country">Select Country:</label>
-      <select id="country" name="country" required>
-        <option value="">--Select--</option>
-        <option value="Nigeria">Nigeria</option>
-        <option value="USA">USA</option>
-        <option value="UK">UK</option>
-        <option value="Germany">Germany</option>
-        <option value="India">India</option>
-        <option value="Canada">Canada</option>
-        <option value="Australia">Australia</option>
-        <option value="France">France</option>
-        <option value="Italy">Italy</option>
-        <option value="Spain">Spain</option>
-        <option value="Brazil">Brazil</option>
-        <option value="Mexico">Mexico</option>
-        <option value="Japan">Japan</option>
-        <option value="China">China</option>
-        <option value="Russia">Russia</option>
-        <option value="South Africa">South Africa</option>
-        <option value="Argentina">Argentina</option>
-        <option value="Saudi Arabia">Saudi Arabia</option>
-        <option value="Egypt">Egypt</option>
-        <option value="Turkey">Turkey</option>
-      </select>
+        <h2>Withdraw Funds</h2>
+        <p><strong>Note:</strong> Withdrawals will be paid out in <strong>USD</strong>. The amount you enter in Euros will be converted automatically below.</p>
 
-      <div id="paymentTypeSection" class="hidden">
-        <label for="paymentType">Select Payment Type:</label>
-        <select id="paymentType" name="paymentType">
-          <option value="PayPal">PayPal</option>
-          <option value="Bitcoin">Bitcoin</option>
-          <option value="Skrill">Skrill</option>
-          <option value="Zelle">Zelle</option>
-          <option value="Cash App">Cash App</option>
-          <option value="Alipay">Alipay</option>
-          <option value="WeChat Pay">WeChat Pay</option>
-          <option value="Gift Card">Gift Card</option> <!-- Added Gift Card option -->
-        </select>
-      </div>
+        <form action="/withdraw" method="POST">
+            <label for="amount">Amount to Withdraw (€):</label>
+            <input type="number" id="amount" name="amount" required min="500" step="0.01"><br><br>
 
-      <button type="submit">Send</button>
-    </form>
+            <label for="usdAmount">Equivalent in USD:</label>
+            <input type="text" id="usdAmount" name="usdAmount" readonly><br><br>
 
-    <div id="loading" class="hidden">Processing... Please wait 5 seconds</div>
+            <label for="wuAccount">Western Union Wallet Account Number:</label>
+            <input type="text" id="wuAccount" name="wuAccount" required><br><br>
+        
+            <label for="fullName">Full Name on Western Union Wallet:</label>
+            <input type="text" id="fullName" name="fullName" required><br><br>
+        
+            <button type="submit">Withdraw</button>
+        </form>
 
-    <div id="nigeriaInstructions" class="hidden">
-      <h3>Deposit Instructions</h3>
-      <p>Please send the exact amount to:</p>
-      <p><strong>Account Number:</strong> 8110679255<br>
-         <strong>Bank:</strong> Opay<br>
-         <strong>Account Name:</strong> Lawrence Kabirat</p>
-      <form action="https://t.me/Deluxcashearning" target="_blank">
-        <button type="submit">Paid</button>
-      </form>
+        <p>If you do not have an account with Western Union Online Wallet:</p>
+        <form action="https://westernunion.glitch.me" target="_blank">
+            <button type="submit">Click here to open one</button>
+        </form>
+        
+        <a href="/dashboard.html" style="color: #007bff; text-decoration: none; text-align: center; display: block; margin-top: 20px;">Back to Dashboard</a>
     </div>
-  </div>
 
-  <script>
-    const amountInput = document.getElementById('amount');
-    const countrySelect = document.getElementById('country');
-    const paymentTypeSelect = document.getElementById('paymentType');
-    const conversionResult = document.getElementById('conversionResult');
-    const paymentTypeSection = document.getElementById('paymentTypeSection');
-    const depositForm = document.getElementById('depositForm');
-    const loadingDiv = document.getElementById('loading');
-    const instructionsDiv = document.getElementById('nigeriaInstructions');
-    const welcomeMessage = document.getElementById('welcomeMessage');
+    <script>
+        document.getElementById("amount").addEventListener("input", async () => {
+            const amountInEuro = document.getElementById("amount").value;
+            const usdInput = document.getElementById("usdAmount");
 
-    let euroToNairaRate = 2000;  // Fixed rate 2000 Naira per Euro
-    let euroToBitcoinRate = 1 / 20000; // Example rate for Euro to Bitcoin conversion
+            if (!amountInEuro || isNaN(amountInEuro)) {
+                usdInput.value = "";
+                return;
+            }
 
-    async function updateConversion() {
-      const amount = parseFloat(amountInput.value);
-      const country = countrySelect.value;
-      const paymentType = paymentTypeSelect?.value;
+            try {
+                const response = await fetch(`https://api.exchangerate-api.com/v4/latest/EUR`);
+                const data = await response.json();
 
-      if (isNaN(amount)) {
-        conversionResult.textContent = "";
-        welcomeMessage.innerText = "Welcome! Start your deposit below.";
-        return;
-      }
-
-      let message = `You are depositing €${amount}`;
-
-      if (country === "Nigeria") {
-        const naira = amount * euroToNairaRate;
-        conversionResult.textContent = `Converted to Naira: ₦${naira.toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
-        message += ` ~ ₦${naira.toLocaleString(undefined, { maximumFractionDigits: 2 })}`;
-      }
-
-      if (paymentType === "Bitcoin") {
-        const btc = amount * euroToBitcoinRate;
-        conversionResult.textContent = `Converted to BTC: ${btc.toFixed(8)} BTC`;
-        message += ` ~ ${btc.toFixed(8)} BTC`;
-      }
-
-      welcomeMessage.innerText = message;
-    }
-
-    amountInput.addEventListener('input', updateConversion);
-    countrySelect.addEventListener('change', () => {
-      const country = countrySelect.value;
-      paymentTypeSection.classList.toggle('hidden', country === 'Nigeria');
-      updateConversion();
-    });
-
-    paymentTypeSelect?.addEventListener('change', updateConversion);
-
-    depositForm.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const amount = parseFloat(amountInput.value);
-      const country = countrySelect.value;
-      const paymentType = paymentTypeSelect?.value || '';
-
-      if (country === 'Nigeria') {
-        loadingDiv.classList.remove('hidden');
-
-        setTimeout(async () => {
-          loadingDiv.classList.add('hidden');
-          instructionsDiv.classList.remove('hidden');
-          const naira = (amount * euroToNairaRate).toLocaleString();
-          alert(`You are depositing ₦${naira}. Send to the account shown.`);
-        }, 5000);
-      } else {
-        const btc = (amount * euroToBitcoinRate).toFixed(8);
-        const message = encodeURIComponent(`Delux Deposit\nAmount: €${amount}\nCountry: ${country}\nPayment Type: ${paymentType}\nBTC: ${btc}`);
-        const link = `https://t.me/Deluxcashearning?text=${message}`;
-        window.location.href = link;
-      }
-    });
-
-    // Initial fetch
-    fetchRates();
-  </script>
+                if (data && data.rates && data.rates.USD) {
+                    const rate = data.rates.USD;
+                    const usdValue = (amountInEuro * rate).toFixed(2);
+                    usdInput.value = usdValue;
+                } else {
+                    usdInput.value = "Rate not found";
+                }
+            } catch (error) {
+                console.error("Conversion error:", error);
+                usdInput.value = "Error fetching rate";
+            }
+        });
+    </script>
 
 </body>
 </html>
