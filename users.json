@@ -406,5 +406,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": " Silver boy",
+    "email": "boycross678@gmail.com",
+    "phoneNumber": "+218 93-0225534",
+    "pin": "258456",
+    "balance": 350,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 350,
+        "date": "4/26/2025, 8:13:08 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
