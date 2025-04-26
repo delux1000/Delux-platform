@@ -374,5 +374,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Marlene Jackson",
+    "email": "marlenejackson395@gmail.com",
+    "phoneNumber": "18769994723",
+    "pin": "123456",
+    "balance": 350,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 350,
+        "date": "4/26/2025, 6:55:15 AM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
