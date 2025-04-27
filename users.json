@@ -476,7 +476,7 @@
     "email": "wkendra928@gmail.com",
     "phoneNumber": "0245918844",
     "pin": "024591",
-    "balance": 350,
+    "balance": 0,
     "transactions": [
       {
         "type": "Credit",
@@ -484,6 +484,11 @@
         "amount": 350,
         "date": "4/27/2025, 6:54:14 PM",
         "balanceAfterTransaction": 150
+      },
+      {
+        "type": "Investment",
+        "amount": 350,
+        "date": "2025-04-27T19:07:33.604Z"
       }
     ]
   }
