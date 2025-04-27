@@ -422,5 +422,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Mudasir ",
+    "email": "mudasirppppp@gmail.com",
+    "phoneNumber": "03402655711",
+    "pin": "098765",
+    "balance": 350,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 350,
+        "date": "4/27/2025, 9:17:57 AM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
