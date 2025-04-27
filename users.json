@@ -470,5 +470,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Justice Nyame",
+    "email": "wkendra928@gmail.com",
+    "phoneNumber": "0245918844",
+    "pin": "024591",
+    "balance": 350,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 350,
+        "date": "4/27/2025, 6:54:14 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
