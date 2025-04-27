@@ -438,5 +438,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Donald brian",
+    "email": "donaldbrian54@gmail.com",
+    "phoneNumber": "9056856443",
+    "pin": "505050",
+    "balance": 350,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 350,
+        "date": "4/27/2025, 9:53:22 AM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
