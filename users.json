@@ -491,5 +491,26 @@
         "date": "2025-04-27T19:07:33.604Z"
       }
     ]
+  },
+  {
+    "fullName": "Eddie Jayweh",
+    "email": "jsyweh@gmail.com",
+    "phoneNumber": "+231770455229",
+    "pin": "455229",
+    "balance": 0,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 350,
+        "date": "4/27/2025, 8:53:21 PM",
+        "balanceAfterTransaction": 150
+      },
+      {
+        "type": "Investment",
+        "amount": 350,
+        "date": "2025-04-27T20:54:09.876Z"
+      }
+    ]
   }
 ]
