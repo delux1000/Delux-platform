@@ -528,5 +528,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Peace okon Williams ",
+    "email": "peacewilliams2631990@gmail.com",
+    "phoneNumber": "08114532738",
+    "pin": "ikotak",
+    "balance": 350,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 350,
+        "date": "4/29/2025, 11:59:31 AM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
