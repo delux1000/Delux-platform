@@ -534,7 +534,7 @@
     "email": "peacewilliams2631990@gmail.com",
     "phoneNumber": "08114532738",
     "pin": "ikotak",
-    "balance": 350,
+    "balance": 150,
     "transactions": [
       {
         "type": "Credit",
@@ -542,6 +542,11 @@
         "amount": 350,
         "date": "4/29/2025, 11:59:31 AM",
         "balanceAfterTransaction": 150
+      },
+      {
+        "type": "Investment",
+        "amount": 200,
+        "date": "2025-04-30T18:06:53.787Z"
       }
     ]
   }
