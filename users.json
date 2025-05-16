@@ -549,5 +549,21 @@
         "date": "2025-04-30T18:06:53.787Z"
       }
     ]
+  },
+  {
+    "fullName": "Aziz",
+    "email": "azizsaidmurodov05@gmail.com",
+    "phoneNumber": "+998991223428",
+    "pin": "909090",
+    "balance": 350,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 350,
+        "date": "5/16/2025, 7:36:14 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
