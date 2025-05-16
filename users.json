@@ -565,5 +565,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Fhgtgh",
+    "email": "scscccv@gmail.com",
+    "phoneNumber": "8105938506",
+    "pin": "fhfvgg",
+    "balance": 350,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 350,
+        "date": "5/16/2025, 7:44:09 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
