@@ -106,7 +106,7 @@ app.post('/register', (req, res) => {
 
       description: 'Delux Welcome Bonus',
 
-      amount: 350,
+      amount: 1800,
 
       date: new Date().toLocaleString(),
 
