@@ -1,208 +1,118 @@
+<!-- Delux Earning – Auto Tasks with YouTube API -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Earn Rewards</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Delux Earning</title>
+  <script src="https://www.youtube.com/iframe_api"></script>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-    }
-
-    .overlay {
-      background: rgba(0, 0, 0, 0.75);
-      min-height: 100vh;
-      padding: 30px 15px;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: auto;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      color: yellow;
-    }
-
-    .task-btn, .invite-btn, .claim-btn {
-      display: block;
-      width: 100%;
-      padding: 15px;
-      margin: 15px 0;
-      font-size: 1.1em;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      text-align: center;
-      color: white;
-    }
-
-    .task-btn {
-      background-color: #007bff;
-    }
-
-    .invite-btn {
-      background-color: #28a745;
-    }
-
-    .claim-btn {
-      background-color: gold;
-      color: #000;
-    }
-
-    #countdown, #rewardMessage, #claimBtn {
-      text-align: center;
-      font-size: 1.2em;
-      margin-top: 15px;
-      display: none;
-    }
-
-    .testimonials {
-      margin-top: 30px;
-      background: rgba(0, 0, 0, 0.3);
-      padding: 15px;
-      border-radius: 10px;
-    }
-
-    .testimonial {
-      margin-bottom: 10px;
-      border-bottom: 1px dashed #ccc;
-      padding-bottom: 10px;
-      font-size: 0.95em;
-    }
-
-    .testimonial span {
-      color: yellow;
-      font-weight: bold;
-    }
-
-    @media (max-width: 600px) {
-      h2 {
-        font-size: 1.5em;
-      }
-
-      .task-btn, .invite-btn, .claim-btn {
-        font-size: 1em;
-        padding: 12px;
-      }
-    }
+    body{font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:auto;padding:1rem;text-align:center}
+    .hidden{display:none}
+    button{padding:.6rem 1.2rem;font-size:1rem;border:none;border-radius:8px;cursor:pointer;background:#28a745;color:#fff}
+    input{padding:.5rem;font-size:1rem;width:80%;border-radius:5px;border:1px solid #ccc}
   </style>
 </head>
 <body>
-  <div class="overlay">
-    <div class="container">
-      <h2>Earn Rewards</h2>
+  <h1>Delux Earning Tasks</h1>
+  <h2 id="task-title">Loading…</h2>
+  <p>Reward: <strong id="reward-amount"></strong></p>
 
-      <div id="taskSection"></div>
+  <!-- Video -->
+  <div id="video-wrapper" class="hidden"><div id="yt-player"></div></div>
 
-      <button class="invite-btn" id="inviteBtn">Invite a Friend</button>
-      <p style="text-align:center;">Earn 5 Euros after inviting 5 friends!</p>
-
-      <div id="countdown">Friends Invited: <span id="inviteCount">0</span>/5</div>
-      <div id="rewardMessage">You’ve invited 5 friends! Click below to claim your reward.</div>
-      <button id="claimBtn" class="claim-btn">Claim Your 5 Euro</button>
-
-      <div class="testimonials" id="testimonialBox">
-        <h3 style="color:#fff;">Live Earnings Testimonials</h3>
-        <div id="testimonials"></div>
-      </div>
-    </div>
+  <!-- Music -->
+  <div id="audio-wrapper" class="hidden">
+    <iframe id="yt-audio" width="100%" height="170" frameborder="0" allow="autoplay" allowfullscreen></iframe>
   </div>
 
-  <script>
-    const taskData = [
-      { title: "Watch Short Videos", priceRange: [1, 3] },
-      { title: "Listen to Music", priceRange: [2, 4] },
-      { title: "Do Remote Jobs", priceRange: [5, 10] },
-      { title: "Write Product Reviews", priceRange: [3, 6] },
-      { title: "Complete Surveys", priceRange: [2, 5] }
-    ];
+  <!-- Claim -->
+  <div id="claim-section" class="hidden">
+    <p>Enter your Delux name to claim:</p>
+    <input id="user-name" placeholder="Delux username"/>
+    <br><br><button onclick="claimReward()">Claim Reward</button>
+  </div>
 
-    const taskSection = document.getElementById('taskSection');
-    taskData.forEach(task => {
-      const price = (Math.random() * (task.priceRange[1] - task.priceRange[0]) + task.priceRange[0]).toFixed(2);
-      const btn = document.createElement('button');
-      btn.className = 'task-btn';
-      btn.textContent = `${task.title} - Earn €${price}`;
-      btn.addEventListener('click', () => {
-        alert("Please deposit or withdraw or invest for the first time to unlock this feature.");
-      });
-      taskSection.appendChild(btn);
+  <br><button onclick="nextTask()">Skip & Next Task</button>
+
+<script>
+/* ---------- CONFIG ---------- */
+const API_KEY = "AIzaSyBQ37WSC-Rsxt3nK1KPj8LiPv7Ua7Ezao8";
+const PAY_MIN = 50, PAY_MAX = 300;
+const VIDEO_TERMS = ["how to", "funny", "travel", "tech review", "vlog", "sports highlights"];
+const MUSIC_TERMS = ["lofi", "jazz mix", "pop hits", "edm", "classical", "hip hop"];
+
+/* ---------- STATE ---------- */
+let player, watchTimer, watchStarted=false;
+let currentTask;
+
+/* ---------- HELPERS ---------- */
+const $ = id=>document.getElementById(id);
+const rnd = (min,max)=>Math.floor(Math.random()*(max-min+1))+min;
+const pick = list=>list[Math.floor(Math.random()*list.length)];
+
+/* Search YouTube (video or music) */
+async function ytSearch(term){
+  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=15&type=video&q=${encodeURIComponent(term)}&key=${API_KEY}`;
+  const j   = await (await fetch(url)).json();
+  return j.items.filter(i=>i.id && i.id.videoId);
+}
+
+/* ---------- TASK FLOW ---------- */
+async function nextTask(){
+  clearTimeout(watchTimer); watchStarted=false;
+  $("claim-section").classList.add("hidden");
+
+  const isVideo = Math.random()<0.5;
+  const term    = pick(isVideo?VIDEO_TERMS:MUSIC_TERMS);
+  const results = await ytSearch(term);
+  const chosen  = pick(results);
+
+  currentTask = {
+    type:  isVideo?"video":"music",
+    id:    chosen.id.videoId,
+    title: chosen.snippet.title,
+    amount:rnd(PAY_MIN,PAY_MAX)
+  };
+
+  $("task-title").textContent = currentTask.title;
+  $("reward-amount").textContent = `€${currentTask.amount}`;
+
+  if(isVideo){
+    $("audio-wrapper").classList.add("hidden");
+    $("video-wrapper").classList.remove("hidden");
+
+    if(player) player.loadVideoById(currentTask.id);
+    else player = new YT.Player("yt-player",{
+      height:"315",width:"560",videoId:currentTask.id,
+      events:{onStateChange:e=>{
+        if(e.data===YT.PlayerState.PLAYING&&!watchStarted){
+          watchStarted=true;
+          const dur = player.getDuration();
+          watchTimer=setTimeout(showClaim,dur*1000);
+        }
+      }}
     });
+  }else{
+    $("video-wrapper").classList.add("hidden");
+    $("audio-wrapper").classList.remove("hidden");
+    const ifr=$("yt-audio");
+    ifr.src=`https://www.youtube.com/embed/${currentTask.id}?autoplay=1`;
+    watchTimer=setTimeout(showClaim,91000); // ~91 seconds
+  }
+}
 
-    let inviteCount = 0;
-    const inviteBtn = document.getElementById('inviteBtn');
-    const inviteCountSpan = document.getElementById('inviteCount');
-    const countdownDiv = document.getElementById('countdown');
-    const rewardMsg = document.getElementById('rewardMessage');
-    const claimBtn = document.getElementById('claimBtn');
+function showClaim(){ $("claim-section").classList.remove("hidden"); }
 
-    inviteBtn.addEventListener('click', () => {
-      const message = encodeURIComponent(
-        "Join me and start earning real rewards today! Click here to register: https://delux-euro.glitch.me"
-      );
+function claimReward(){
+  const name=$("user-name").value.trim();
+  if(!name) return alert("Please enter your Delux name.");
+  const msg=encodeURIComponent(`Hi @Deluxcashearning, I just completed a task and want to claim €${currentTask.amount}. My Delux name: ${name}.`);
+  window.open(`https://t.me/share/url?url=&text=${msg}`);
+  $("claim-section").classList.add("hidden");
+}
 
-      if (navigator.share) {
-        navigator.share({
-          title: "Delux Cash Earning",
-          text: "Earn money by completing simple tasks!",
-          url: "https://delux-euro.glitch.me"
-        });
-      } else {
-        const whatsappUrl = `https://wa.me/?text=${message}`;
-        const smsUrl = `sms:?body=${message}`;
-        window.open(whatsappUrl, '_blank') || window.open(smsUrl, '_blank');
-      }
-
-      inviteCount++;
-      inviteCountSpan.textContent = inviteCount;
-      countdownDiv.style.display = 'block';
-
-      if (inviteCount >= 5) {
-        rewardMsg.style.display = 'block';
-        claimBtn.style.display = 'block';
-      }
-    });
-
-    claimBtn.addEventListener('click', () => {
-      const telegramMsg = "I just invited 5 friends please I want to claim my reward";
-      window.open(`https://t.me/deluxcashearning?start=${encodeURIComponent(telegramMsg)}`, '_blank');
-    });
-
-    // Testimonials
-    const testimonialNames = ["James", "Aisha", "Carlos", "Nora", "Hassan", "Emily", "Olu", "Chinwe", "Liam", "Fatima"];
-    const countries = ["Nigeria", "USA", "Germany", "India", "Canada", "Ghana", "Brazil", "UK", "France", "Kenya"];
-    const testimonialBox = document.getElementById('testimonials');
-
-    function generateTestimonial() {
-      const name = testimonialNames[Math.floor(Math.random() * testimonialNames.length)];
-      const country = countries[Math.floor(Math.random() * countries.length)];
-      const amount = (Math.random() * 10 + 2).toFixed(2);
-
-      const div = document.createElement('div');
-      div.className = 'testimonial';
-      div.innerHTML = `<span>${name}</span> from <span>${country}</span> earned <span>€${amount}</span> doing simple tasks.`;
-      testimonialBox.prepend(div);
-
-      // Keep only 5 latest
-      if (testimonialBox.children.length > 5) {
-        testimonialBox.removeChild(testimonialBox.lastChild);
-      }
-    }
-
-    setInterval(generateTestimonial, 5000);
-    for (let i = 0; i < 3; i++) generateTestimonial();
-  </script>
+window.onload=nextTask;
+</script>
 </body>
 </html>
