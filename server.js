@@ -96,7 +96,7 @@ app.post('/register', (req, res) => {
 
   pin, 
 
-  balance: 350, 
+  balance: 1800, 
 
   transactions: [
 
