@@ -1,198 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Withdraw</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvtdFyqzfN9BCsj-zmH7y_aNumJTa9uPcx4ESJJttliwsc0PCV5SQldWjA&s=10') no-repeat center center fixed;
-            background-size: cover;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
-
-        h2 {
-            text-align: center;
-            color: #ffcc00;
-            font-size: 2.5em;
-            margin-top: 20px;
-            text-transform: uppercase;
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        .form-container {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 30px;
-            margin: 50px auto;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 600px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            animation: slideUp 1.5s ease-in-out;
-        }
-
-        .form-container input,
-        .form-container button {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 1em;
-        }
-
-        .form-container input {
-            background-color: #f9f9f9;
-            color: #333;
-        }
-
-        .form-container button {
-            background-color: #007bff;
-            color: #fff;
-            font-weight: normal;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .form-container button:hover {
-            background-color: #0056b3;
-        }
-
-        .form-container label {
-            font-size: 1.1em;
-            margin-bottom: 5px;
-        }
-
-        #usdAmount {
-            background-color: #f1f1f1;
-        }
-
-        #welcomeMessage {
-            text-align: center;
-            font-size: 1.5em;
-            color: #007bff;
-            margin-bottom: 20px;
-            animation: bounceIn 1.5s ease-in-out;
-        }
-
-        p {
-            font-size: 1em;
-            text-align: center;
-            margin-top: 20px;
-            color: #555;
-        }
-
-        @media (max-width: 768px) {
-            h2 {
-                font-size: 2em;
-            }
-
-            .form-container {
-                width: 90%;
-                padding: 20px;
-            }
-
-            #welcomeMessage {
-                font-size: 1.2em;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideUp {
-            0% {
-                transform: translateY(30px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes bounceIn {
-            0% {
-                transform: scale(0);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Withdraw</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvtdFyqzfN9BCsj-zmH7y_aNumJTa9uPcx4ESJJttliwsc0PCV5SQldWjA&s=10') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    h2 {
+      text-align: center;
+      color: #ffcc00;
+      font-size: 2.5em;
+      margin-top: 20px;
+      text-transform: uppercase;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 30px;
+      margin: 50px auto;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 600px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      animation: slideUp 1.5s ease-in-out;
+    }
+    .form-container input,
+    .form-container select,
+    .form-container button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+    .form-container button {
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .form-container button:hover {
+      background-color: #0056b3;
+    }
+    #usdAmount {
+      background-color: #f1f1f1;
+    }
+    #welcomeMessage {
+      text-align: center;
+      font-size: 1.5em;
+      color: #007bff;
+      margin-bottom: 20px;
+      animation: bounceIn 1.5s ease-in-out;
+    }
+    .message {
+      text-align: center;
+      font-size: 1em;
+      margin-top: 10px;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @keyframes slideUp {
+      0% { transform: translateY(30px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes bounceIn {
+      0% { transform: scale(0); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+  </style>
 </head>
 <body>
+  <div class="form-container">
+    <div id="welcomeMessage">Welcome! Ready to withdraw your funds.</div>
+    <h2>Withdraw Funds</h2>
+    <p><strong>Note:</strong> Withdrawals will be paid out in <strong>USD</strong>. The amount you enter in Euros will be converted automatically below.</p>
+    
+    <form id="withdrawForm">
+      <label for="amount">Amount to Withdraw (€):</label>
+      <input type="number" id="amount" name="amount" required min="2000" step="0.01"/>
 
-    <div class="form-container">
-        <div id="welcomeMessage">Welcome! Ready to withdraw your funds.</div>
+      <label for="usdAmount">Equivalent in USD:</label>
+      <input type="text" id="usdAmount" name="usdAmount" readonly/>
 
-        <h2>Withdraw Funds</h2>
-        <p><strong>Note:</strong> Withdrawals will be paid out in <strong>USD</strong>. The amount you enter in Euros will be converted automatically below.</p>
+      <label for="paymentMethod">Select Payment Method:</label>
+      <select id="paymentMethod" required>
+        <option value="">-- Select Payment Type --</option>
+        <option>PayPal</option>
+        <option>Zelle</option>
+        <option>Cash App</option>
+        <option>Bitcoin</option>
+        <option>USDT</option>
+        <option>Chime</option>
+        <option>Apple Pay</option>
+        <option>Venmo</option>
+        <option>Wise</option>
+        <option>Revolut</option>
+        <option>Google Pay</option>
+        <option>MetaMask</option>
+        <option>Skrill</option>
+        <option>Neteller</option>
+        <option>Bank Transfer</option>
+        <option>Western Union</option>
+        <option>MoneyGram</option>
+        <option>Payeer</option>
+        <option>Perfect Money</option>
+        <option>Alipay</option>
+      </select>
 
-        <form action="/withdraw" method="POST">
-            <label for="amount">Amount to Withdraw (€):</label>
-            <input type="number" id="amount" name="amount" required min="2000" step="0.01"><br><br>
+      <div id="paymentDetailsContainer"></div>
 
-            <label for="usdAmount">Equivalent in USD:</label>
-            <input type="text" id="usdAmount" name="usdAmount" readonly><br><br>
+      <label for="coupon">Enter Withdrawal Coupon:</label>
+      <input type="text" id="coupon" required/>
 
-            <label for="wuAccount">Western Union Wallet Account Number:</label>
-            <input type="text" id="wuAccount" name="wuAccount" required><br><br>
-        
-            <label for="fullName">Full Name on Western Union Wallet:</label>
-            <input type="text" id="fullName" name="fullName" required><br><br>
-        
-            <button type="submit">Withdraw</button>
-        </form>
+      <button type="submit">Send & Confirm</button>
+      <div class="message" id="message"></div>
+    </form>
 
-        <p>If you do not have an account with Western Union Online Wallet:</p>
-        <form action="https://westernunion.glitch.me" target="_blank">
-            <button type="submit">Click here to open one</button>
-        </form>
-        
-        <a href="/dashboard.html" style="color: #007bff; text-decoration: none; text-align: center; display: block; margin-top: 20px;">Back to Dashboard</a>
-    </div>
+    <a href="/dashboard.html" style="color: #007bff; text-decoration: none; text-align: center; display: block; margin-top: 20px;">Back to Dashboard</a>
+  </div>
 
-    <script>
-        document.getElementById("amount").addEventListener("input", async () => {
-            const amountInEuro = document.getElementById("amount").value;
-            const usdInput = document.getElementById("usdAmount");
+  <script>
+    const amountInput = document.getElementById("amount");
+    const usdInput = document.getElementById("usdAmount");
+    const paymentMethod = document.getElementById("paymentMethod");
+    const paymentDetailsContainer = document.getElementById("paymentDetailsContainer");
+    const form = document.getElementById("withdrawForm");
+    const messageDiv = document.getElementById("message");
 
-            if (!amountInEuro || isNaN(amountInEuro)) {
-                usdInput.value = "";
-                return;
-            }
+    amountInput.addEventListener("input", async () => {
+      const amount = amountInput.value;
+      if (!amount || isNaN(amount)) {
+        usdInput.value = "";
+        return;
+      }
+      try {
+        const res = await fetch("https://api.exchangerate-api.com/v4/latest/EUR");
+        const data = await res.json();
+        const rate = data.rates.USD;
+        usdInput.value = (amount * rate).toFixed(2);
+      } catch {
+        usdInput.value = "Error fetching rate";
+      }
+    });
 
-            try {
-                const response = await fetch(`https://api.exchangerate-api.com/v4/latest/EUR`);
-                const data = await response.json();
+    paymentMethod.addEventListener("change", () => {
+      const type = paymentMethod.value;
+      let placeholder = "Payment Detail";
+      if (type === "PayPal" || type === "Zelle") placeholder = "Enter Email Address";
+      else if (type === "Bitcoin" || type === "USDT" || type === "MetaMask") placeholder = "Enter Wallet Address";
+      else if (type === "Cash App") placeholder = "Enter Cashtag (e.g., $example)";
+      else if (type === "Apple Pay" || type === "Google Pay" || type === "Venmo") placeholder = "Enter Mobile Number";
+      else if (type === "Bank Transfer") placeholder = "Enter IBAN or Account Number";
 
-                if (data && data.rates && data.rates.USD) {
-                    const rate = data.rates.USD;
-                    const usdValue = (amountInEuro * rate).toFixed(2);
-                    usdInput.value = usdValue;
-                } else {
-                    usdInput.value = "Rate not found";
-                }
-            } catch (error) {
-                console.error("Conversion error:", error);
-                usdInput.value = "Error fetching rate";
-            }
-        });
-    </script>
+      if (type) {
+        paymentDetailsContainer.innerHTML = `
+          <label for="paymentDetail">${type} Details:</label>
+          <input type="text" id="paymentDetail" name="paymentDetail" placeholder="${placeholder}" required />
+        `;
+      } else {
+        paymentDetailsContainer.innerHTML = "";
+      }
+    });
 
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const coupon = document.getElementById("coupon").value.trim();
+      if (coupon !== "DLX338989") {
+        messageDiv.style.color = "red";
+        messageDiv.textContent = "Invalid coupon. Kindly get one from Delux customer service.";
+        return;
+      }
+
+      messageDiv.style.color = "green";
+      messageDiv.textContent = "Withdrawal successful! Your account has been debited.";
+    });
+  </script>
 </body>
 </html>
