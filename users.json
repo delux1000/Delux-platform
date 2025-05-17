@@ -364,7 +364,7 @@
     "email": "b@b.b",
     "phoneNumber": "36363",
     "pin": "555555",
-    "balance": 2852095,
+    "balance": 2847095,
     "transactions": [
       {
         "type": "Credit",
@@ -397,6 +397,11 @@
         "type": "Withdrawal",
         "amount": 540405,
         "date": "2025-05-17T11:13:06.924Z"
+      },
+      {
+        "type": "Withdrawal",
+        "amount": 5000,
+        "date": "2025-05-17T11:15:37.047Z"
       }
     ]
   },
