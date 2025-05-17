@@ -1,4 +1,4 @@
-<!-- Delux Earning – Auto Tasks with YouTube API -->
+<!-- Delux Earning – VIP Access, Mode Switch, Testimonials, Responsive -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,88 +7,167 @@
   <title>Delux Earning</title>
   <script src="https://www.youtube.com/iframe_api"></script>
   <style>
-    body{font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:auto;padding:1rem;text-align:center}
-    .hidden{display:none}
-    button{padding:.6rem 1.2rem;font-size:1rem;border:none;border-radius:8px;cursor:pointer;background:#28a745;color:#fff}
-    input{padding:.5rem;font-size:1rem;width:80%;border-radius:5px;border:1px solid #ccc}
+  :root{
+    --green:#28a745; --dark:#222; --light:#f8f9fa; --radius:10px;
+  }
+  body{
+    font-family:'Segoe UI',Arial,sans-serif;
+    margin:0; background:var(--light); color:var(--dark); text-align:center;
+    display:flex; flex-direction:column; min-height:100vh;
+  }
+  header{padding:1rem 0;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+  h1{margin:0;font-size:1.6rem}
+  main{flex:1; padding:1rem; max-width:700px; margin:auto}
+  .hidden{display:none}
+  .btn{
+    background:var(--green);color:#fff;border:none;border-radius:var(--radius);
+    padding:.7rem 1.4rem;font-size:1rem;cursor:pointer;transition:.2s;
+  }
+  .btn:hover{filter:brightness(.9)}
+  input[type="text"]{
+    padding:.6rem;font-size:1rem;border:1px solid #ccc;border-radius:var(--radius);width:80%;
+  }
+  /* Testimonials */
+  #testimonials{margin-top:2rem;overflow:hidden;height:120px;position:relative}
+  #testimonials div{
+    position:absolute;width:100%;animation:scrollTest 18s linear infinite;
+  }
+  @keyframes scrollTest{
+    0%{transform:translateY(100%)}
+    100%{transform:translateY(-100%)}
+  }
+  /* Media queries */
+  @media(max-width:480px){
+    h1{font-size:1.3rem}
+    .btn{padding:.6rem 1rem;font-size:.9rem}
+    #yt-player{width:100%!important;height:220px!important}
+  }
   </style>
 </head>
 <body>
-  <h1>Delux Earning Tasks</h1>
-  <h2 id="task-title">Loading…</h2>
-  <p>Reward: <strong id="reward-amount"></strong></p>
+<header><h1>Delux Earning Platform</h1></header>
 
-  <!-- Video -->
-  <div id="video-wrapper" class="hidden"><div id="yt-player"></div></div>
+<main>
+  <!-- VIP Gate -->
+  <section id="vip-gate">
+    <h2>Enter VIP Code</h2>
+    <input id="vip-input" placeholder="VIP Code"/>
+    <br><br><button class="btn" onclick="checkVip()">Enter</button>
+    <p id="vip-error" style="color:red"></p>
+  </section>
 
-  <!-- Music -->
-  <div id="audio-wrapper" class="hidden">
-    <iframe id="yt-audio" width="100%" height="170" frameborder="0" allow="autoplay" allowfullscreen></iframe>
-  </div>
+  <!-- App Core -->
+  <section id="app" class="hidden">
+    <!-- Mode Buttons -->
+    <div style="margin-bottom:1rem">
+      <button class="btn" onclick="setMode('video')">Videos</button>
+      <button class="btn" onclick="setMode('music')">Music</button>
+    </div>
 
-  <!-- Claim -->
-  <div id="claim-section" class="hidden">
-    <p>Enter your Delux name to claim:</p>
-    <input id="user-name" placeholder="Delux username"/>
-    <br><br><button onclick="claimReward()">Claim Reward</button>
-  </div>
+    <h2 id="task-title">Loading…</h2>
+    <p>Reward: <strong id="reward-amount"></strong></p>
 
-  <br><button onclick="nextTask()">Skip & Next Task</button>
+    <!-- Video -->
+    <div id="video-wrapper" class="hidden"><div id="yt-player"></div></div>
+
+    <!-- Music -->
+    <div id="audio-wrapper" class="hidden">
+      <iframe id="yt-audio" width="100%" height="170" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    </div>
+
+    <!-- Claim -->
+    <div id="claim-section" class="hidden">
+      <p>Enter your Delux name to claim:</p>
+      <input id="user-name" placeholder="Delux username"/>
+      <br><br><button class="btn" onclick="claimReward()">Claim Reward</button>
+    </div>
+
+    <br><button class="btn" onclick="nextTask()">Skip & Next Task</button>
+
+    <!-- Testimonials -->
+    <h3 style="margin-top:2rem">What our users say</h3>
+    <div id="testimonials"></div>
+  </section>
+</main>
+
+<footer style="padding:.8rem 0;background:#fff;font-size:.8rem">© 2025 Delux Earning</footer>
 
 <script>
 /* ---------- CONFIG ---------- */
+const VIP_CODE = "DLX9054";
 const API_KEY = "AIzaSyBQ37WSC-Rsxt3nK1KPj8LiPv7Ua7Ezao8";
 const PAY_MIN = 50, PAY_MAX = 300;
-const VIDEO_TERMS = ["how to", "funny", "travel", "tech review", "vlog", "sports highlights"];
-const MUSIC_TERMS = ["lofi", "jazz mix", "pop hits", "edm", "classical", "hip hop"];
+const VIDEO_TERMS = ["how to","funny","travel","tech review","vlog","sports highlights"];
+const MUSIC_TERMS = ["lofi","jazz mix","pop hits","edm","classical","hip hop"];
+
+const TESTIMONIAL_TEMPLATES = [
+  name=>`“I earned €${rnd(60,150)} in one afternoon! Thanks Delux.” – ${name}`,
+  name=>`“The tasks are fun and the payouts are real.” – ${name}`,
+  name=>`“Best online side hustle of 2025!” – ${name}`,
+  name=>`“Videos + music + cash = perfect.” – ${name}`
+];
+const NAMES=["Ada","Chinedu","Maria","Zhang","Lucas","Fatima","Ethan","Sofia","Raj","Elena"];
 
 /* ---------- STATE ---------- */
-let player, watchTimer, watchStarted=false;
-let currentTask;
+let mode="auto"; // 'video'|'music'|'auto'
+let player, watchTimer, watchStarted=false,currentTask;
 
 /* ---------- HELPERS ---------- */
 const $ = id=>document.getElementById(id);
 const rnd = (min,max)=>Math.floor(Math.random()*(max-min+1))+min;
 const pick = list=>list[Math.floor(Math.random()*list.length)];
 
-/* Search YouTube (video or music) */
-async function ytSearch(term){
-  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=15&type=video&q=${encodeURIComponent(term)}&key=${API_KEY}`;
-  const j   = await (await fetch(url)).json();
-  return j.items.filter(i=>i.id && i.id.videoId);
+/* VIP Gate */
+function checkVip(){
+  if($("vip-input").value.trim()===VIP_CODE){
+    $("vip-gate").classList.add("hidden");
+    $("app").classList.remove("hidden");
+    initTestimonials();
+    nextTask();
+  }else{
+    $("vip-error").textContent="Invalid code. Try again.";
+  }
 }
 
-/* ---------- TASK FLOW ---------- */
+/* Mode toggle */
+function setMode(m){mode=m;nextTask();}
+
+/* YouTube search */
+async function ytSearch(term){
+  const url=`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=15&type=video&q=${encodeURIComponent(term)}&key=${API_KEY}`;
+  const j=await (await fetch(url)).json();
+  return j.items.filter(i=>i.id&&i.id.videoId);
+}
+
+/* Task flow */
 async function nextTask(){
-  clearTimeout(watchTimer); watchStarted=false;
+  clearTimeout(watchTimer);watchStarted=false;
   $("claim-section").classList.add("hidden");
 
-  const isVideo = Math.random()<0.5;
-  const term    = pick(isVideo?VIDEO_TERMS:MUSIC_TERMS);
-  const results = await ytSearch(term);
-  const chosen  = pick(results);
+  const useVideo = mode==="auto"?Math.random()<0.5:mode==="video";
+  const term=pick(useVideo?VIDEO_TERMS:MUSIC_TERMS);
+  const list=await ytSearch(term);
+  const chosen=pick(list);
 
-  currentTask = {
-    type:  isVideo?"video":"music",
-    id:    chosen.id.videoId,
-    title: chosen.snippet.title,
+  currentTask={
+    type:useVideo?"video":"music",
+    id:chosen.id.videoId,
+    title:chosen.snippet.title,
     amount:rnd(PAY_MIN,PAY_MAX)
   };
 
-  $("task-title").textContent = currentTask.title;
-  $("reward-amount").textContent = `€${currentTask.amount}`;
+  $("task-title").textContent=currentTask.title;
+  $("reward-amount").textContent=`€${currentTask.amount}`;
 
-  if(isVideo){
+  if(useVideo){
     $("audio-wrapper").classList.add("hidden");
     $("video-wrapper").classList.remove("hidden");
-
     if(player) player.loadVideoById(currentTask.id);
-    else player = new YT.Player("yt-player",{
-      height:"315",width:"560",videoId:currentTask.id,
+    else player=new YT.Player("yt-player",{height:"315",width:"560",videoId:currentTask.id,
       events:{onStateChange:e=>{
         if(e.data===YT.PlayerState.PLAYING&&!watchStarted){
           watchStarted=true;
-          const dur = player.getDuration();
+          const dur=player.getDuration();
           watchTimer=setTimeout(showClaim,dur*1000);
         }
       }}
@@ -96,23 +175,34 @@ async function nextTask(){
   }else{
     $("video-wrapper").classList.add("hidden");
     $("audio-wrapper").classList.remove("hidden");
-    const ifr=$("yt-audio");
-    ifr.src=`https://www.youtube.com/embed/${currentTask.id}?autoplay=1`;
-    watchTimer=setTimeout(showClaim,91000); // ~91 seconds
+    $("yt-audio").src=`https://www.youtube.com/embed/${currentTask.id}?autoplay=1`;
+    watchTimer=setTimeout(showClaim,91000);
   }
 }
 
-function showClaim(){ $("claim-section").classList.remove("hidden"); }
+function showClaim(){$("claim-section").classList.remove("hidden");}
 
 function claimReward(){
   const name=$("user-name").value.trim();
-  if(!name) return alert("Please enter your Delux name.");
-  const msg=encodeURIComponent(`Hi @Deluxcashearning, I just completed a task and want to claim €${currentTask.amount}. My Delux name: ${name}.`);
+  if(!name) return alert("Enter your Delux name");
+  const msg=encodeURIComponent(`Hi @Deluxcashearning, I completed a task and want to claim €${currentTask.amount}. My Delux name: ${name}.`);
   window.open(`https://t.me/share/url?url=&text=${msg}`);
   $("claim-section").classList.add("hidden");
 }
 
-window.onload=nextTask;
+/* Testimonials */
+function initTestimonials(){
+  const wrap=$("testimonials");
+  const cont=document.createElement("div");
+  wrap.appendChild(cont);
+  for(let i=0;i<10;i++){
+    const quote=pick(TESTIMONIAL_TEMPLATES)(pick(NAMES));
+    const p=document.createElement("p");
+    p.style.margin="1rem 0";
+    p.textContent=quote;
+    cont.appendChild(p);
+  }
+}
 </script>
 </body>
 </html>
