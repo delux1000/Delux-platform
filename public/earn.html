@@ -144,7 +144,7 @@ const TESTIMONIAL_TEMPLATES = [
   name=>`“Delux is changing the game.” – ${name}`,
   name=>`“Got paid to watch my favorite music!” – ${name}`
 ];
-const NAMES=["Ada","Chinedu","Maria","Zhang","Lucas","Fatima","Ethan","Sofia","Raj","Elena","Ahmed","Sara","James","Emily","Ken","Aisha","Leo","Gianna"];
+const NAMES=["Ada","Dickinson","mexiccote","Zhang","Lucas","Arthur","Ethan","Sofia","Raj","Elena","Donald","Daniel","James","Emily","Ken","Wayne","Brian","Gianna"];
 
 /* ---------- STATE ---------- */
 let mode="auto"; // 'video'|'music'|'auto'
@@ -230,7 +230,7 @@ function claimReward(){
   const name=$("user-name").value.trim();
   if(!name) return alert("Enter your Delux name");
   const msg=encodeURIComponent(`Hi @Deluxcashearning, I completed a task and want to claim €${currentTask.amount}. My Delux name: ${name}.`);
-  window.open(`https://t.me/share/url?url=&text=${msg}`);
+  window.open(`https://t.me/Deluxcashearning/url?url=&text=${msg}`);
   $("claim-section").classList.add("hidden");
 }
 
