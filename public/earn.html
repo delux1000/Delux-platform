@@ -48,22 +48,28 @@
   }
 
   /* Testimonials */
-  #testimonials{margin-top:2rem;overflow:hidden;height:140px;position:relative}
-  #testimonials div{
-    position:absolute;width:100%;
-    animation:scrollTest 60s linear infinite;
+  #testimonials {
+    margin-top: 2rem;
+    height: 140px;
+    position: relative;
+    overflow: hidden;
   }
-  #testimonials p{
+  #testimonials p {
+    display: none;
     background:#fff;
     margin:1rem auto;
     padding:1rem;
     border-radius:var(--radius);
     box-shadow:0 2px 6px rgba(0,0,0,0.1);
     max-width:90%;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
   }
-  @keyframes scrollTest{
-    0%{transform:translateY(100%)}
-    100%{transform:translateY(-1000%)}
+  #testimonials p.active {
+    display: block;
   }
 
   @media(max-width:480px){
@@ -230,15 +236,25 @@ function claimReward(){
 
 /* Testimonials */
 function initTestimonials(){
-  const wrap=$("testimonials");
-  const cont=document.createElement("div");
-  wrap.appendChild(cont);
-  for(let i=0;i<200;i++){
-    const quote=pick(TESTIMONIAL_TEMPLATES)(pick(NAMES));
-    const p=document.createElement("p");
-    p.textContent=quote;
-    cont.appendChild(p);
+  const wrap = $("testimonials");
+  wrap.innerHTML = ""; // clear any existing content
+  const testimonialsArr = [];
+  for(let i = 0; i < 20; i++){
+    const quote = pick(TESTIMONIAL_TEMPLATES)(pick(NAMES));
+    const p = document.createElement("p");
+    p.textContent = quote;
+    wrap.appendChild(p);
+    testimonialsArr.push(p);
   }
+
+  let currentIndex = 0;
+  testimonialsArr[currentIndex].classList.add("active");
+
+  setInterval(() => {
+    testimonialsArr[currentIndex].classList.remove("active");
+    currentIndex = (currentIndex + 1) % testimonialsArr.length;
+    testimonialsArr[currentIndex].classList.add("active");
+  }, 5000);
 }
 </script>
 </body>
