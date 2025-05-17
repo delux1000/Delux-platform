@@ -16,5 +16,17 @@
     "type": "Investment",
     "amount": 200,
     "date": "2025-04-30T18:06:53.788Z"
+  },
+  {
+    "email": "b@b.b",
+    "type": "Withdrawal",
+    "amount": 5000,
+    "date": "2025-05-17T10:52:03.028Z"
+  },
+  {
+    "email": "b@b.b",
+    "type": "Withdrawal",
+    "amount": 95000,
+    "date": "2025-05-17T10:53:18.501Z"
   }
 ]
