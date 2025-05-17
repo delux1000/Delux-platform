@@ -1,190 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Withdraw</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvtdFyqzfN9BCsj-zmH7y_aNumJTa9uPcx4ESJJttliwsc0PCV5SQldWjA&s=10') no-repeat center center fixed;
-      background-size: cover;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-    h2 {
-      text-align: center;
-      color: #ffcc00;
-      font-size: 2.5em;
-      margin-top: 20px;
-      text-transform: uppercase;
-      animation: fadeIn 2s ease-in-out;
-    }
-    .form-container {
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 30px;
-      margin: 50px auto;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 600px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      animation: slideUp 1.5s ease-in-out;
-    }
-    .form-container input,
-    .form-container select,
-    .form-container button {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 1em;
-    }
-    .form-container button {
-      background-color: #007bff;
-      color: #fff;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .form-container button:hover {
-      background-color: #0056b3;
-    }
-    #usdAmount {
-      background-color: #f1f1f1;
-    }
-    #welcomeMessage {
-      text-align: center;
-      font-size: 1.5em;
-      color: #007bff;
-      margin-bottom: 20px;
-      animation: bounceIn 1.5s ease-in-out;
-    }
-    .message {
-      text-align: center;
-      font-size: 1em;
-      margin-top: 10px;
-    }
-    @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-    @keyframes slideUp {
-      0% { transform: translateY(30px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-    @keyframes bounceIn {
-      0% { transform: scale(0); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Withdraw</title>
+
+<style>
+  :root { --blue:#007bff; --yellow:#ffcc00; }
+  body{
+    margin:0;font-family:Arial,Helvetica,sans-serif;color:#333;
+    background:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvtdFyqzfN9BCsj-zmH7y_aNumJTa9uPcx4ESJJttliwsc0PCV5SQldWjA&s=10')
+              no-repeat center/cover fixed;
+  }
+  h2{text-align:center;font-size:2.4rem;color:var(--yellow);margin:1rem 0}
+  .wrap{
+    max-width:620px;margin:3rem auto;padding:2rem 2.5rem;
+    background:rgba(255,255,255,.85);border-radius:12px;
+    box-shadow:0 8px 18px rgba(0,0,0,.25);
+  }
+  label{display:block;margin-top:1rem;font-weight:600}
+  input,select,button{
+    width:100%;padding:.8rem;font-size:1rem;margin-top:.4rem;
+    border:1px solid #ccc;border-radius:6px;
+  }
+  input[readonly]{background:#f1f1f1}
+  button{
+    background:var(--blue);color:#fff;border:none;cursor:pointer;
+    transition:.25s background;
+  } button:hover{background:#0056b3}
+  .msg{margin-top:.75rem;text-align:center;font-weight:600}
+  .hidden{display:none}
+</style>
 </head>
 <body>
-  <div class="form-container">
-    <div id="welcomeMessage">Welcome! Ready to withdraw your funds.</div>
-    <h2>Withdraw Funds</h2>
-    <p><strong>Note:</strong> Withdrawals will be paid out in <strong>USD</strong>. The amount you enter in Euros will be converted automatically below.</p>
-    
-    <form id="withdrawForm">
-      <label for="amount">Amount to Withdraw (€):</label>
-      <input type="number" id="amount" name="amount" required min="2000" step="0.01"/>
+<div class="wrap">
+  <h2>Withdraw Funds</h2>
 
-      <label for="usdAmount">Equivalent in USD:</label>
-      <input type="text" id="usdAmount" name="usdAmount" readonly/>
+  <p style="text-align:center">
+    Current Balance: <strong id="bal">—</strong> USD
+  </p>
 
-      <label for="paymentMethod">Select Payment Method:</label>
-      <select id="paymentMethod" required>
-        <option value="">-- Select Payment Type --</option>
-        <option>PayPal</option>
-        <option>Zelle</option>
-        <option>Cash App</option>
-        <option>Bitcoin</option>
-        <option>USDT</option>
-        <option>Chime</option>
-        <option>Apple Pay</option>
-        <option>Venmo</option>
-        <option>Wise</option>
-        <option>Revolut</option>
-        <option>Google Pay</option>
-        <option>MetaMask</option>
-        <option>Skrill</option>
-        <option>Neteller</option>
-        <option>Bank Transfer</option>
-        <option>Western Union</option>
-        <option>MoneyGram</option>
-        <option>Payeer</option>
-        <option>Perfect Money</option>
-        <option>Alipay</option>
-      </select>
+  <form id="form">
+    <label for="amountEur">Amount to withdraw (€):</label>
+    <input type="number" id="amountEur" min="1" step="0.01" required />
 
-      <div id="paymentDetailsContainer"></div>
+    <label for="amountUsd">Equivalent in USD:</label>
+    <input id="amountUsd" readonly />
 
-      <label for="coupon">Enter Withdrawal Coupon:</label>
-      <input type="text" id="coupon" required/>
+    <label for="method">Payment method:</label>
+    <select id="method" required>
+      <option value="">— Select —</option>
+      <option>PayPal</option><option>Zelle</option><option>Cash App</option>
+      <option>Bitcoin</option><option>USDT</option><option>Chime</option>
+      <option>Apple Pay</option><option>Venmo</option><option>Wise</option>
+      <option>Revolut</option><option>Google Pay</option><option>MetaMask</option>
+      <option>Skrill</option><option>Neteller</option><option>Bank Transfer</option>
+      <option>MoneyGram</option><option>Payeer</option><option>Perfect Money</option>
+      <option>Alipay</option>
+    </select>
 
-      <button type="submit">Send & Confirm</button>
-      <div class="message" id="message"></div>
-    </form>
+    <div id="detailWrap"></div>
 
-    <a href="/dashboard.html" style="color: #007bff; text-decoration: none; text-align: center; display: block; margin-top: 20px;">Back to Dashboard</a>
+    <!-- coupon asks later -->
+    <div id="couponWrap" class="hidden">
+      <label for="coupon">Withdrawal coupon:</label>
+      <input id="coupon" placeholder="Enter coupon DLX338989"/>
+    </div>
+
+    <button type="submit" id="submitBtn">Send & Confirm</button>
+    <div class="msg" id="msg"></div>
+  </form>
+
+  <!-- approval section appears after debit -->
+  <div id="feeSection" class="hidden" style="margin-top:2rem;text-align:center">
+    <p>You must pay a <strong>10 % network fee</strong> to finalise this withdrawal.</p>
+    <button id="approveBtn">Approve & Open Telegram</button>
   </div>
 
-  <script>
-    const amountInput = document.getElementById("amount");
-    const usdInput = document.getElementById("usdAmount");
-    const paymentMethod = document.getElementById("paymentMethod");
-    const paymentDetailsContainer = document.getElementById("paymentDetailsContainer");
-    const form = document.getElementById("withdrawForm");
-    const messageDiv = document.getElementById("message");
+  <p style="text-align:center;margin-top:2rem">
+    <a href="/dashboard.html">← Back to Dashboard</a>
+  </p>
+</div>
 
-    amountInput.addEventListener("input", async () => {
-      const amount = amountInput.value;
-      if (!amount || isNaN(amount)) {
-        usdInput.value = "";
-        return;
-      }
-      try {
-        const res = await fetch("https://api.exchangerate-api.com/v4/latest/EUR");
-        const data = await res.json();
-        const rate = data.rates.USD;
-        usdInput.value = (amount * rate).toFixed(2);
-      } catch {
-        usdInput.value = "Error fetching rate";
-      }
+<script>
+const balEl = document.getElementById('bal');
+const amountEur = document.getElementById('amountEur');
+const amountUsd = document.getElementById('amountUsd');
+const method = document.getElementById('method');
+const detailWrap = document.getElementById('detailWrap');
+const couponWrap = document.getElementById('couponWrap');
+const couponEl = document.getElementById('coupon');
+const form = document.getElementById('form');
+const msg = document.getElementById('msg');
+const feeSec = document.getElementById('feeSection');
+const approveBtn = document.getElementById('approveBtn');
+
+let userBalance = 0;
+let currentEmail = sessionStorage.email || '';   // set after login
+
+// -------- get logged-in user balance ----------
+(async function fetchBalance(){
+  try{
+    const res = await fetch('/users');            // returns the whole array
+    if(!res.ok) throw new Error('fetch error');
+    const users = await res.json();
+    const me = users.find(u => u.email === currentEmail);
+    if(!me) throw new Error('User not found');
+    userBalance = Number(me.balance)||0;
+    balEl.textContent = userBalance.toLocaleString();
+  }catch(e){
+    balEl.textContent='(error)';
+    msg.textContent='Could not load balance.';
+  }
+})();
+
+// -------- euro → usd live convert -------------
+amountEur.addEventListener('input', async ()=>{
+  const val = parseFloat(amountEur.value);
+  if(!val){ amountUsd.value=''; return; }
+  try{
+    const r = await fetch('https://api.exchangerate-api.com/v4/latest/EUR');
+    const rate = (await r.json()).rates.USD;
+    amountUsd.value = (val*rate).toFixed(2);
+  }catch{ amountUsd.value='rate err'; }
+});
+
+// -------- change payment fields ---------------
+method.addEventListener('change', ()=>{
+  const t = method.value;
+  if(!t){ detailWrap.innerHTML=''; return; }
+  let ph = 'Payment detail';
+  if(['PayPal','Zelle'].includes(t)) ph='Email address';
+  else if(['Bitcoin','USDT','MetaMask'].includes(t)) ph='Wallet address';
+  else if(t==='Cash App') ph='Cashtag e.g. $example';
+  else if(['Apple Pay','Google Pay','Venmo'].includes(t)) ph='Mobile number';
+  else if(t==='Bank Transfer') ph='IBAN / Account number';
+
+  detailWrap.innerHTML=`
+    <label for="detail">${t} details:</label>
+    <input id="detail" required placeholder="${ph}">
+  `;
+});
+
+// -------- form submit -------------------------
+form.addEventListener('submit', async e=>{
+  e.preventDefault();
+  msg.textContent='';
+  const usd = parseFloat(amountUsd.value);
+  if(!usd){ msg.textContent='Invalid amount.'; return; }
+
+  // balance check
+  if(usd>userBalance){
+    msg.textContent='Insufficient balance.';
+    return;
+  }
+
+  // if coupon not shown yet, reveal it and stop
+  if(couponWrap.classList.contains('hidden')){
+    couponWrap.classList.remove('hidden');
+    msg.textContent='Enter your withdrawal coupon to proceed.';
+    return;
+  }
+
+  // validate coupon
+  if(couponEl.value.trim()!=='DLX338989'){
+    msg.textContent='Invalid coupon. Contact support.';
+    return;
+  }
+
+  // all good – debit via API
+  try{
+    const body = {
+      email: currentEmail,
+      amountUsd: usd,
+      amountEur: parseFloat(amountEur.value),
+      method: method.value,
+      detail: document.getElementById('detail')?.value||''
+    };
+    const r = await fetch('/users/withdraw',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(body)
     });
+    if(!r.ok) throw new Error('Withdraw failed');
+    userBalance -= usd;
+    balEl.textContent=userBalance.toLocaleString();
+    form.classList.add('hidden');
+    feeSec.classList.remove('hidden');
+  }catch(err){
+    msg.textContent='Server error: '+err.message;
+  }
+});
 
-    paymentMethod.addEventListener("change", () => {
-      const type = paymentMethod.value;
-      let placeholder = "Payment Detail";
-      if (type === "PayPal" || type === "Zelle") placeholder = "Enter Email Address";
-      else if (type === "Bitcoin" || type === "USDT" || type === "MetaMask") placeholder = "Enter Wallet Address";
-      else if (type === "Cash App") placeholder = "Enter Cashtag (e.g., $example)";
-      else if (type === "Apple Pay" || type === "Google Pay" || type === "Venmo") placeholder = "Enter Mobile Number";
-      else if (type === "Bank Transfer") placeholder = "Enter IBAN or Account Number";
-
-      if (type) {
-        paymentDetailsContainer.innerHTML = `
-          <label for="paymentDetail">${type} Details:</label>
-          <input type="text" id="paymentDetail" name="paymentDetail" placeholder="${placeholder}" required />
-        `;
-      } else {
-        paymentDetailsContainer.innerHTML = "";
-      }
-    });
-
-    form.addEventListener("submit", e => {
-      e.preventDefault();
-      const coupon = document.getElementById("coupon").value.trim();
-      if (coupon !== "DLX338989") {
-        messageDiv.style.color = "red";
-        messageDiv.textContent = "Invalid coupon. Kindly get one from Delux customer service.";
-        return;
-      }
-
-      messageDiv.style.color = "green";
-      messageDiv.textContent = "Withdrawal successful! Your account has been debited.";
-    });
-  </script>
+// -------- approve button (telegram deep link) --
+approveBtn.addEventListener('click', ()=>{
+  const txt = encodeURIComponent(
+    `Hello @deluxcashearnig! I just withdrew $${amountUsd.value}.\n`+
+    `Method: ${method.value}\nDetails: ${document.getElementById('detail')?.value}\n`+
+    `Fee (10 %): $${(amountUsd.value*0.1).toFixed(2)}\n`+
+    `Please send payment details so I can pay the fee and approve my transaction.`
+  );
+  window.open(`https://t.me/share/url?url=&text=${txt}`,'_blank');
+});
+</script>
 </body>
 </html>
