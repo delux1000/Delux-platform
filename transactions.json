@@ -28,5 +28,23 @@
     "type": "Withdrawal",
     "amount": 95000,
     "date": "2025-05-17T10:53:18.501Z"
+  },
+  {
+    "email": "b@b.b",
+    "type": "Withdrawal",
+    "amount": 5000,
+    "date": "2025-05-17T11:03:07.108Z"
+  },
+  {
+    "email": "b@b.b",
+    "type": "Withdrawal",
+    "amount": 2500,
+    "date": "2025-05-17T11:11:02.955Z"
+  },
+  {
+    "email": "b@b.b",
+    "type": "Withdrawal",
+    "amount": 540405,
+    "date": "2025-05-17T11:13:06.924Z"
   }
 ]
