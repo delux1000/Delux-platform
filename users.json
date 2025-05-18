@@ -611,5 +611,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Bess Muqaj",
+    "email": "bessmuqaj@gmail.com",
+    "phoneNumber": "045630067",
+    "pin": "dine12",
+    "balance": 1800,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 1800,
+        "date": "5/18/2025, 5:24:08 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
