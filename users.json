@@ -643,5 +643,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Olayinka Samuel",
+    "email": "adesokano905@gmail.com",
+    "phoneNumber": "07056026145",
+    "pin": "020408",
+    "balance": 1800,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 1800,
+        "date": "5/22/2025, 8:17:36 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
