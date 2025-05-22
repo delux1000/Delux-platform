@@ -659,5 +659,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "James Stella",
+    "email": "ntn@gmail.com",
+    "phoneNumber": "567893873009",
+    "pin": "666666",
+    "balance": 1800,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 1800,
+        "date": "5/22/2025, 8:46:05 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
