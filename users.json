@@ -675,5 +675,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Victory",
+    "email": "josephvictory2024@gmail.com",
+    "phoneNumber": "08134302710",
+    "pin": "081343",
+    "balance": 1800,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 1800,
+        "date": "5/23/2025, 10:03:35 AM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
