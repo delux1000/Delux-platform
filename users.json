@@ -675,5 +675,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Abraham ",
+    "email": "abrahamchibuike05@gmail.com",
+    "phoneNumber": "08108264452",
+    "pin": "081082",
+    "balance": 1800,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 1800,
+        "date": "5/25/2025, 8:02:50 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
