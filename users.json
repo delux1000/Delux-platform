@@ -188,8 +188,8 @@
     "email": "kylewwebster@live.co.uk",
     "phoneNumber": "07715360173",
     "pin": "696969",
-    "balance": 22111,
-    "transactions": [
+    "balance": 22606,
+    "transactions":  [
       {
         "type": "Credit",
         "description": "Delux Welcome Bonus",
