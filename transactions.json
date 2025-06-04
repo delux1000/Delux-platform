@@ -52,5 +52,11 @@
     "type": "Withdrawal",
     "amount": 5000,
     "date": "2025-05-17T11:15:37.047Z"
+  },
+  {
+    "email": "kylewwebster@live.co.uk",
+    "type": "Withdrawal",
+    "amount": 2500,
+    "date": "2025-06-04T12:56:16.954Z"
   }
 ]

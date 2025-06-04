@@ -188,7 +188,7 @@
     "email": "kylewwebster@live.co.uk",
     "phoneNumber": "07715360173",
     "pin": "696969",
-    "balance": 24265,
+    "balance": 21765,
     "transactions": [
       {
         "type": "Credit",
@@ -196,6 +196,11 @@
         "amount": 2300,
         "date": "/2025, 2:22:05 PM",
         "balanceAfterTransaction": 150
+      },
+      {
+        "type": "Withdrawal",
+        "amount": 2500,
+        "date": "2025-06-04T12:56:16.954Z"
       }
     ]
   },
