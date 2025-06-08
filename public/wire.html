@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wire Funds</title>
+</head>
+<body>
+  <h2>Wire Funds to Another User</h2>
+  <form action="/wire" method="POST">
+    <label for="email">Recipient Email:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+    <label for="amount">Amount (€):</label><br>
+    <input type="number" id="amount" name="amount" step="0.01" required><br><br>
+    <button type="submit">Send Funds</button>
+  </form>
+</body>
+</html>
