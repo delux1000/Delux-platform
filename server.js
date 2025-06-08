@@ -160,7 +160,7 @@ app.post('/wire', (req, res) => {
 
   saveUsers(users);
   logTransaction(sender.email, 'Wire Sent', wireAmount);
-  logTransaction(recipient.email, 'Wire Received', wireAmount);
+  logTransaction(recipient.email, 'reward Received', wireAmount);
 
   res.send(`<h2>Wire Transfer Successful!</h2> <p>${wireAmount}€ sent from ${senderEmail} to ${recipientEmail}.</p> <script>setTimeout(() => window.location.href = '/wire.html', 3000);</script>`);
 });
