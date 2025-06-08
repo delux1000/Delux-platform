@@ -64,5 +64,17 @@
     "type": "Withdrawal",
     "amount": 10000,
     "date": "2025-06-07T12:42:05.996Z"
+  },
+  {
+    "email": "paymentbitcoin91@gmail.com",
+    "type": "Wire Sent",
+    "amount": 5000,
+    "date": "2025-06-08T02:50:17.525Z"
+  },
+  {
+    "email": "k@k.k",
+    "type": "Wire Received",
+    "amount": 5000,
+    "date": "2025-06-08T02:50:17.525Z"
   }
 ]

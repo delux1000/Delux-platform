@@ -125,23 +125,29 @@ app.post('/withdraw', (req, res) => {
   res.send(`<h2>Withdrawal Successful!</h2> <p>${withdrawalAmount}€ has been debited from your account.</p> <p>Redirecting to transaction history...</p> <script>setTimeout(() => window.location.href = '/transaction-history.html', 2000);</script>`);
 });
 
-// Wire Transfer
+// Wire Transfer without login (senderEmail required in form)
 app.post('/wire', (req, res) => {
-  if (!req.session.user) return res.status(401).json({ error: "Not logged in" });
-
-  const { recipientEmail, amount } = req.body;
+  const { senderEmail, recipientEmail, amount } = req.body;
   const wireAmount = parseFloat(amount);
 
-  let users = readUsers();
-  const sender = users.find(u => u.email === req.session.user);
-  const recipient = users.find(u => u.email === recipientEmail);
-
-  if (!recipient) {
-    return res.send("Invalid user: recipient email not found.");
+  if (!senderEmail || !recipientEmail || isNaN(wireAmount) || wireAmount <= 0) {
+    return res.send("Invalid input.");
   }
 
-  if (sender.balance < wireAmount || wireAmount <= 0) {
-    return res.send("Insufficient funds or invalid amount.");
+  let users = readUsers();
+  const sender = users.find(u => u.email === senderEmail);
+  const recipient = users.find(u => u.email === recipientEmail);
+
+  if (!sender) {
+    return res.send("Invalid sender email.");
+  }
+
+  if (!recipient) {
+    return res.send("Invalid recipient email.");
+  }
+
+  if (sender.balance < wireAmount) {
+    return res.send("Sender has insufficient funds.");
   }
 
   sender.balance -= wireAmount;
@@ -150,13 +156,13 @@ app.post('/wire', (req, res) => {
   const now = new Date().toISOString();
 
   sender.transactions.push({ type: "Wire Sent", to: recipientEmail, amount: wireAmount, date: now });
-  recipient.transactions.push({ type: "Wire Received", from: sender.email, amount: wireAmount, date: now });
+  recipient.transactions.push({ type: "Wire Received", from: senderEmail, amount: wireAmount, date: now });
 
   saveUsers(users);
   logTransaction(sender.email, 'Wire Sent', wireAmount);
   logTransaction(recipient.email, 'Wire Received', wireAmount);
 
-  res.send(`<h2>Wire Transfer Successful!</h2> <p>${wireAmount}€ sent to ${recipientEmail}.</p> <script>setTimeout(() => window.location.href = '/dashboard.html', 3000);</script>`);
+  res.send(`<h2>Wire Transfer Successful!</h2> <p>${wireAmount}€ sent from ${senderEmail} to ${recipientEmail}.</p> <script>setTimeout(() => window.location.href = '/wire.html', 3000);</script>`);
 });
 
 // Transaction History

@@ -4,15 +4,22 @@
     "email": "k@k.k",
     "phoneNumber": "1234567",
     "pin": "222222",
-    "balance": 80,
-    "transactions": []
+    "balance": 5080,
+    "transactions": [
+      {
+        "type": "Wire Received",
+        "from": "paymentbitcoin91@gmail.com",
+        "amount": 5000,
+        "date": "2025-06-08T02:50:17.524Z"
+      }
+    ]
   },
   {
     "fullName": "Gray Dickinson",
     "email": "paymentbitcoin91@gmail.com",
     "phoneNumber": "1234568",
     "pin": "123456",
-    "balance": 150,
+    "balance": 995050,
     "transactions": [
       {
         "type": "Credit",
@@ -20,6 +27,12 @@
         "amount": 150,
         "date": "4/20/2025, 10:16:45 AM",
         "balanceAfterTransaction": 150
+      },
+      {
+        "type": "Wire Sent",
+        "to": "k@k.k",
+        "amount": 5000,
+        "date": "2025-06-08T02:50:17.524Z"
       }
     ]
   },
