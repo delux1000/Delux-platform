@@ -19,7 +19,7 @@
     "email": "paymentbitcoin91@gmail.com",
     "phoneNumber": "1234568",
     "pin": "123456",
-    "balance": 992338,
+    "balance": 992121,
     "transactions": [
       {
         "type": "Credit",
@@ -99,6 +99,12 @@
         "to": "kylewwebster@live.co.uk",
         "amount": 237,
         "date": "2025-06-08T14:53:52.729Z"
+      },
+      {
+        "type": "Wire Sent",
+        "to": "kylewwebster@live.co.uk",
+        "amount": 217,
+        "date": "2025-06-09T19:43:10.239Z"
       }
     ]
   },
@@ -267,7 +273,7 @@
     "email": "kylewwebster@live.co.uk",
     "phoneNumber": "07715360173",
     "pin": "696969",
-    "balance": 14698,
+    "balance": 14915,
     "transactions": [
       {
         "type": "Credit",
@@ -351,6 +357,12 @@
         "from": "paymentbitcoin91@gmail.com",
         "amount": 237,
         "date": "2025-06-08T14:53:52.729Z"
+      },
+      {
+        "type": "Wire Received",
+        "from": "paymentbitcoin91@gmail.com",
+        "amount": 217,
+        "date": "2025-06-09T19:43:10.239Z"
       }
     ]
   },
