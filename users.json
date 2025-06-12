@@ -1186,5 +1186,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Aeron lens ",
+    "email": "lordbenz952@mail.com",
+    "phoneNumber": "07089047253 ",
+    "pin": "Sugar ",
+    "balance": 1800,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 1800,
+        "date": "6/12/2025, 6:26:04 AM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
