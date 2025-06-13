@@ -718,5 +718,17 @@
     "type": "reward Received",
     "amount": 300,
     "date": "2025-06-13T13:01:39.571Z"
+  },
+  {
+    "email": "paymentbitcoin91@gmail.com",
+    "type": "Wire Sent",
+    "amount": 230,
+    "date": "2025-06-13T13:24:27.697Z"
+  },
+  {
+    "email": "kylewwebster@live.co.uk",
+    "type": "reward Received",
+    "amount": 230,
+    "date": "2025-06-13T13:24:27.698Z"
   }
 ]
