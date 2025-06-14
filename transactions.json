@@ -886,5 +886,17 @@
     "type": "reward Received",
     "amount": 225,
     "date": "2025-06-14T12:29:28.402Z"
+  },
+  {
+    "email": "kylewwebster@live.co.uk",
+    "type": "Withdrawal",
+    "amount": 7659,
+    "date": "2025-06-14T13:35:30.140Z"
+  },
+  {
+    "email": "kylewwebster@live.co.uk",
+    "type": "Withdrawal",
+    "amount": 7659,
+    "date": "2025-06-14T13:35:45.705Z"
   }
 ]
