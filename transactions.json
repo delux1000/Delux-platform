@@ -898,5 +898,17 @@
     "type": "Withdrawal",
     "amount": 7659,
     "date": "2025-06-14T13:35:45.705Z"
+  },
+  {
+    "email": "paymentbitcoin91@gmail.com",
+    "type": "Wire Sent",
+    "amount": 288,
+    "date": "2025-06-15T13:19:34.507Z"
+  },
+  {
+    "email": "kylewwebster@live.co.uk",
+    "type": "reward Received",
+    "amount": 288,
+    "date": "2025-06-15T13:19:34.508Z"
   }
 ]
