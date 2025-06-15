@@ -230,7 +230,7 @@ function claimReward(){
   const name=$("user-name").value.trim();
   if(!name) return alert("Enter your Delux name");
   const msg=encodeURIComponent(`Hi @Deluxcashearning, I completed a task and want to claim €${currentTask.amount}. My Delux name: ${name}.`);
-  window.open(`https://t.me/Deluxcashearning/url?url=&text=${msg}`);
+  window.open(`https://wa.me/+13167303662/url?url=&text=${msg}`);
   $("claim-section").classList.add("hidden");
 }
 
