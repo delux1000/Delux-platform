@@ -1718,5 +1718,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Mick robson",
+    "email": "bembernard372@gmail.com",
+    "phoneNumber": "08100345459",
+    "pin": "BENZ12",
+    "balance": 1800,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 1800,
+        "date": "6/15/2025, 6:53:57 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
