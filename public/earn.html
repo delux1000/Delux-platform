@@ -1,4 +1,3 @@
-<!-- Delux Earning – Enhanced VIP Gate, Testimonials, Design -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,79 +6,152 @@
   <title>Delux Earning</title>
   <script src="https://www.youtube.com/iframe_api"></script>
   <style>
-  :root{
-    --green:#28a745; --dark:#222; --light:#f8f9fa; --radius:10px;
-  }
-  body{
-    font-family:'Segoe UI',Arial,sans-serif;
-    margin:0; background:url('https://images.unsplash.com/photo-1508780709619-79562169bc64?auto=format&fit=crop&w=1280&q=80') no-repeat center center/cover;
-    color:var(--dark); text-align:center;
-    display:flex; flex-direction:column; min-height:100vh;
-  }
-  header{padding:1rem 0;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.05);}
-  h1{margin:0;font-size:1.6rem}
-  main{flex:1; padding:1rem; max-width:700px; margin:auto; background-color:rgba(255,255,255,0.9); border-radius:var(--radius);}
-  .hidden{display:none}
-  .btn{
-    background:var(--green);color:#fff;border:none;border-radius:var(--radius);
-    padding:.7rem 1.4rem;font-size:1rem;cursor:pointer;transition:.2s;
-  }
-  .btn:hover{filter:brightness(.9)}
-  input[type="text"]{
-    padding:.6rem;font-size:1rem;border:1px solid #ccc;border-radius:var(--radius);width:80%;
-  }
-  /* Loading Spinner */
-  #loading{
-    display:none;
-    margin-top:1rem;
-  }
-  #loading::after{
-    content:"";
-    display:inline-block;
-    width:40px;
-    height:40px;
-    border:4px solid #ccc;
-    border-top-color:var(--green);
-    border-radius:50%;
-    animation:spin 1s linear infinite;
-  }
-  @keyframes spin{
-    to{transform:rotate(360deg)}
-  }
+    :root {
+      --green: #28a745;
+      --dark: #222;
+      --light: #f8f9fa;
+      --radius: 10px;
+    }
 
-  /* Testimonials */
-  #testimonials {
-    margin-top: 2rem;
-    height: 140px;
-    position: relative;
-    overflow: hidden;
-  }
-  #testimonials p {
-    display: none;
-    background:#fff;
-    margin:1rem auto;
-    padding:1rem;
-    border-radius:var(--radius);
-    box-shadow:0 2px 6px rgba(0,0,0,0.1);
-    max-width:90%;
-    position: absolute;
-    width: 100%;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  #testimonials p.active {
-    display: block;
-  }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      background: url('https://images.unsplash.com/photo-1508780709619-79562169bc64?auto=format&fit=crop&w=1280&q=80') no-repeat center center/cover;
+      color: var(--dark);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-  @media(max-width:480px){
-    h1{font-size:1.3rem}
-    .btn{padding:.6rem 1rem;font-size:.9rem}
-    #yt-player{width:100%!important;height:220px!important}
-  }
+    header {
+      padding: 1rem 0;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.6rem;
+    }
+
+    main {
+      flex: 1;
+      padding: 1rem;
+      max-width: 900px;
+      margin: auto;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: var(--radius);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .btn {
+      background: var(--green);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      padding: .7rem 1.4rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      filter: brightness(.9);
+    }
+
+    input[type="text"] {
+      padding: .6rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: var(--radius);
+      width: 80%;
+      max-width: 400px;
+    }
+
+    #loading {
+      display: none;
+      margin-top: 1rem;
+    }
+
+    #loading::after {
+      content: "";
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border: 4px solid #ccc;
+      border-top-color: var(--green);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    #video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      max-height: 600px;
+      overflow-y: auto;
+      margin-top: 1rem;
+    }
+
+    iframe {
+      border-radius: var(--radius);
+      width: 100%;
+      height: 160px;
+    }
+
+    #audio-wrapper iframe {
+      height: 170px;
+    }
+
+    #testimonials {
+      margin-top: 2rem;
+      height: 140px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #testimonials p {
+      display: none;
+      background: #fff;
+      margin: 1rem auto;
+      padding: 1rem;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      max-width: 90%;
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    #testimonials p.active {
+      display: block;
+    }
+
+    footer {
+      padding: .8rem 0;
+      background: #fff;
+      text-align: center;
+      font-size: .8rem;
+    }
+
+    @media(max-width: 480px) {
+      h1 { font-size: 1.3rem }
+      .btn { padding: .6rem 1rem; font-size: .9rem }
+    }
   </style>
 </head>
 <body>
+
 <header><h1>Delux Earning Platform</h1></header>
 
 <main>
@@ -94,7 +166,6 @@
 
   <!-- App Core -->
   <section id="app" class="hidden">
-    <!-- Mode Buttons -->
     <div style="margin-bottom:1rem">
       <button class="btn" onclick="setMode('video')">Videos</button>
       <button class="btn" onclick="setMode('music')">Music</button>
@@ -103,12 +174,14 @@
     <h2 id="task-title">Loading…</h2>
     <p>Reward: <strong id="reward-amount"></strong></p>
 
-    <!-- Video -->
-    <div id="video-wrapper" class="hidden"><div id="yt-player"></div></div>
+    <!-- Video Grid -->
+    <div id="video-wrapper" class="hidden">
+      <div id="video-grid"></div>
+    </div>
 
     <!-- Music -->
     <div id="audio-wrapper" class="hidden">
-      <iframe id="yt-audio" width="100%" height="170" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+      <iframe id="yt-audio" frameborder="0" allow="autoplay" allowfullscreen></iframe>
     </div>
 
     <!-- Claim -->
@@ -126,120 +199,116 @@
   </section>
 </main>
 
-<footer style="padding:.8rem 0;background:#fff;font-size:.8rem">© 2025 Delux Earning</footer>
+<footer>© 2025 Delux Earning</footer>
 
 <script>
-/* ---------- CONFIG ---------- */
 const VIP_CODE = "DLX9054";
 const API_KEY = "AIzaSyBQ37WSC-Rsxt3nK1KPj8LiPv7Ua7Ezao8";
 const PAY_MIN = 50, PAY_MAX = 300;
-const VIDEO_TERMS = ["how to","funny","travel","tech review","vlog","sports highlights"];
-const MUSIC_TERMS = ["lofi","jazz mix","pop hits","edm","classical","hip hop"];
+const VIDEO_TERMS = ["how to", "funny", "travel", "tech review", "vlog", "sports highlights"];
+const MUSIC_TERMS = ["lofi", "jazz mix", "pop hits", "edm", "classical", "hip hop"];
 
 const TESTIMONIAL_TEMPLATES = [
-  name=>`“I earned €${rnd(60,150)} in one afternoon! Thanks Delux.” – ${name}`,
-  name=>`“The tasks are fun and the payouts are real.” – ${name}`,
-  name=>`“Best online side hustle of 2025!” – ${name}`,
-  name=>`“Videos + music + cash = perfect.” – ${name}`,
-  name=>`“Delux is changing the game.” – ${name}`,
-  name=>`“Got paid to watch my favorite music!” – ${name}`
+  name => `“I earned €${rnd(60,150)} in one afternoon! Thanks Delux.” – ${name}`,
+  name => `“The tasks are fun and the payouts are real.” – ${name}`,
+  name => `“Best online side hustle of 2025!” – ${name}`,
+  name => `“Videos + music + cash = perfect.” – ${name}`,
+  name => `“Delux is changing the game.” – ${name}`,
+  name => `“Got paid to watch my favorite music!” – ${name}`
 ];
-const NAMES=["Ada","Dickinson","mexiccote","Zhang","Lucas","Arthur","Ethan","Sofia","Raj","Elena","Donald","Daniel","James","Emily","Ken","Wayne","Brian","Gianna"];
+const NAMES = ["Ada", "Dickinson", "mexiccote", "Zhang", "Lucas", "Arthur", "Ethan", "Sofia", "Raj", "Elena", "Donald", "Daniel", "James", "Emily", "Ken", "Wayne", "Brian", "Gianna"];
 
-/* ---------- STATE ---------- */
-let mode="auto"; // 'video'|'music'|'auto'
-let player, watchTimer, watchStarted=false,currentTask;
+const $ = id => document.getElementById(id);
+const rnd = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+const pick = list => list[Math.floor(Math.random() * list.length)];
 
-/* ---------- HELPERS ---------- */
-const $ = id=>document.getElementById(id);
-const rnd = (min,max)=>Math.floor(Math.random()*(max-min+1))+min;
-const pick = list=>list[Math.floor(Math.random()*list.length)];
+let mode = "auto";
+let currentTask;
 
-/* VIP Gate */
-function checkVip(){
+function checkVip() {
   const code = $("vip-input").value.trim();
-  if(code===VIP_CODE){
-    $("vip-error").textContent="";
-    $("loading").style.display="block";
-    setTimeout(()=>{
+  if (code === VIP_CODE) {
+    $("vip-error").textContent = "";
+    $("loading").style.display = "block";
+    setTimeout(() => {
       $("vip-gate").classList.add("hidden");
       $("app").classList.remove("hidden");
-      $("loading").style.display="none";
+      $("loading").style.display = "none";
       initTestimonials();
       nextTask();
-    }, 5000); // 5 seconds loading
-  }else{
-    $("vip-error").textContent="Invalid code. Try again.";
+    }, 5000);
+  } else {
+    $("vip-error").textContent = "Invalid code. Try again.";
   }
 }
 
-/* Mode toggle */
-function setMode(m){mode=m;nextTask();}
-
-/* YouTube search */
-async function ytSearch(term){
-  const url=`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=15&type=video&q=${encodeURIComponent(term)}&key=${API_KEY}`;
-  const j=await (await fetch(url)).json();
-  return j.items.filter(i=>i.id&&i.id.videoId);
+function setMode(m) {
+  mode = m;
+  nextTask();
 }
 
-/* Task flow */
-async function nextTask(){
-  clearTimeout(watchTimer);watchStarted=false;
+async function ytSearch(term) {
+  const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&type=video&q=${encodeURIComponent(term)}&key=${API_KEY}`;
+  const j = await (await fetch(url)).json();
+  return j.items.filter(i => i.id && i.id.videoId);
+}
+
+async function nextTask() {
   $("claim-section").classList.add("hidden");
+  $("video-wrapper").classList.add("hidden");
+  $("audio-wrapper").classList.add("hidden");
 
-  const useVideo = mode==="auto"?Math.random()<0.5:mode==="video";
-  const term=pick(useVideo?VIDEO_TERMS:MUSIC_TERMS);
-  const list=await ytSearch(term);
-  const chosen=pick(list);
+  const useVideo = mode === "auto" ? Math.random() < 0.5 : mode === "video";
+  const term = pick(useVideo ? VIDEO_TERMS : MUSIC_TERMS);
+  const list = await ytSearch(term);
+  const chosen = pick(list);
 
-  currentTask={
-    type:useVideo?"video":"music",
-    id:chosen.id.videoId,
-    title:chosen.snippet.title,
-    amount:rnd(PAY_MIN,PAY_MAX)
+  currentTask = {
+    type: useVideo ? "video" : "music",
+    id: chosen.id.videoId,
+    title: chosen.snippet.title,
+    amount: rnd(PAY_MIN, PAY_MAX)
   };
 
-  $("task-title").textContent=currentTask.title;
-  $("reward-amount").textContent=`€${currentTask.amount}`;
+  $("task-title").textContent = currentTask.title;
+  $("reward-amount").textContent = `€${currentTask.amount}`;
 
-  if(useVideo){
-    $("audio-wrapper").classList.add("hidden");
+  if (useVideo) {
     $("video-wrapper").classList.remove("hidden");
-    if(player) player.loadVideoById(currentTask.id);
-    else player=new YT.Player("yt-player",{height:"315",width:"560",videoId:currentTask.id,
-      events:{onStateChange:e=>{
-        if(e.data===YT.PlayerState.PLAYING&&!watchStarted){
-          watchStarted=true;
-          const dur=player.getDuration();
-          watchTimer=setTimeout(showClaim,dur*1000);
-        }
-      }}
+    const grid = $("video-grid");
+    grid.innerHTML = "";
+    list.forEach(video => {
+      const iframe = document.createElement("iframe");
+      iframe.src = `https://www.youtube.com/embed/${video.id.videoId}`;
+      iframe.allow = "autoplay; encrypted-media";
+      iframe.allowFullscreen = true;
+      grid.appendChild(iframe);
     });
-  }else{
-    $("video-wrapper").classList.add("hidden");
+    setTimeout(showClaim, 95000);
+  } else {
     $("audio-wrapper").classList.remove("hidden");
-    $("yt-audio").src=`https://www.youtube.com/embed/${currentTask.id}?autoplay=1`;
-    watchTimer=setTimeout(showClaim,91000);
+    $("yt-audio").src = `https://www.youtube.com/embed/${currentTask.id}?autoplay=1`;
+    setTimeout(showClaim, 91000);
   }
 }
 
-function showClaim(){$("claim-section").classList.remove("hidden");}
+function showClaim() {
+  $("claim-section").classList.remove("hidden");
+}
 
-function claimReward(){
-  const name=$("user-name").value.trim();
-  if(!name) return alert("Enter your Delux name");
-  const msg=encodeURIComponent(`Hi @Deluxcashearning, I completed a task and want to claim €${currentTask.amount}. My Delux name: ${name}.`);
-  window.open(`https://wa.me/+13167303662?url=&text=${msg}`);
+function claimReward() {
+  const name = $("user-name").value.trim();
+  if (!name) return alert("Enter your Delux name");
+  const msg = encodeURIComponent(`Hi @Deluxcashearning, I completed a task and want to claim €${currentTask.amount}. My Delux name: ${name}.`);
+  window.open(`https://wa.me/13167303662?text=${msg}`, "_blank");
   $("claim-section").classList.add("hidden");
 }
 
-/* Testimonials */
-function initTestimonials(){
+function initTestimonials() {
   const wrap = $("testimonials");
-  wrap.innerHTML = ""; // clear any existing content
+  wrap.innerHTML = "";
   const testimonialsArr = [];
-  for(let i = 0; i < 20; i++){
+  for (let i = 0; i < 20; i++) {
     const quote = pick(TESTIMONIAL_TEMPLATES)(pick(NAMES));
     const p = document.createElement("p");
     p.textContent = quote;
@@ -257,5 +326,6 @@ function initTestimonials(){
   }, 5000);
 }
 </script>
+
 </body>
 </html>
