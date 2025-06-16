@@ -1854,5 +1854,21 @@
         "balanceAfterTransaction": 150
       }
     ]
+  },
+  {
+    "fullName": "Jasmineteaa",
+    "email": "jasminetaee329@gmail.com",
+    "phoneNumber": "07065806578",
+    "pin": "Daniel",
+    "balance": 1800,
+    "transactions": [
+      {
+        "type": "Credit",
+        "description": "Delux Welcome Bonus",
+        "amount": 1800,
+        "date": "6/16/2025, 9:20:10 PM",
+        "balanceAfterTransaction": 150
+      }
+    ]
   }
 ]
