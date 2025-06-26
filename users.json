@@ -19,7 +19,7 @@
     "email": "paymentbitcoin91@gmail.com",
     "phoneNumber": "1234568",
     "pin": "123456",
-    "balance": 944550,
+    "balance": 943505,
     "transactions": [
       {
         "type": "Credit",
@@ -1137,6 +1137,30 @@
         "to": "kylewwebster@live.co.uk",
         "amount": 119,
         "date": "2025-06-25T12:35:51.102Z"
+      },
+      {
+        "type": "Wire Sent",
+        "to": "kylewwebster@live.co.uk",
+        "amount": 250,
+        "date": "2025-06-26T14:53:40.942Z"
+      },
+      {
+        "type": "Wire Sent",
+        "to": "kylewwebster@live.co.uk",
+        "amount": 260,
+        "date": "2025-06-26T14:53:50.832Z"
+      },
+      {
+        "type": "Wire Sent",
+        "to": "kylewwebster@live.co.uk",
+        "amount": 277,
+        "date": "2025-06-26T14:53:55.456Z"
+      },
+      {
+        "type": "Wire Sent",
+        "to": "kylewwebster@live.co.uk",
+        "amount": 258,
+        "date": "2025-06-26T14:54:01.040Z"
       }
     ]
   },
@@ -1305,7 +1329,7 @@
     "email": "kylewwebster@live.co.uk",
     "phoneNumber": "07715360173",
     "pin": "696969",
-    "balance": 17828,
+    "balance": 18873,
     "transactions": [
       {
         "type": "Credit",
@@ -2452,6 +2476,30 @@
         "from": "paymentbitcoin91@gmail.com",
         "amount": 119,
         "date": "2025-06-25T12:35:51.102Z"
+      },
+      {
+        "type": "Wire Received",
+        "from": "paymentbitcoin91@gmail.com",
+        "amount": 250,
+        "date": "2025-06-26T14:53:40.942Z"
+      },
+      {
+        "type": "Wire Received",
+        "from": "paymentbitcoin91@gmail.com",
+        "amount": 260,
+        "date": "2025-06-26T14:53:50.832Z"
+      },
+      {
+        "type": "Wire Received",
+        "from": "paymentbitcoin91@gmail.com",
+        "amount": 277,
+        "date": "2025-06-26T14:53:55.456Z"
+      },
+      {
+        "type": "Wire Received",
+        "from": "paymentbitcoin91@gmail.com",
+        "amount": 258,
+        "date": "2025-06-26T14:54:01.040Z"
       }
     ]
   },
